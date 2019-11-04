@@ -7,7 +7,7 @@ import fake_glean as glean
 
 logging.basicConfig(level=logging.INFO)
 
-DATA_DIR = pathlib.Path("data")
+CONFIG_DIR = pathlib.Path("config")
 
 
 @dataclasses.dataclass
@@ -29,7 +29,7 @@ class App:
 
 
 def run_app() -> None:
-    app = App(DATA_DIR / "metrics.yaml", DATA_DIR / "pings.yaml")
+    app = App(CONFIG_DIR / "metrics.yaml", CONFIG_DIR / "pings.yaml")
     app.search("mozilla firefox")
 
     print(f"📊 {dataclasses.asdict(app.metrics)}")
