@@ -13,6 +13,7 @@ test.burnham:
     labels:
       - search_engine1
       - search_engine2
+      - search_engine2
     send_in_pings:
       - metrics
       - baseline
