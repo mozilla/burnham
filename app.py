@@ -5,7 +5,7 @@ import typing
 
 import fake_glean as glean
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.DEBUG)
 
 CONFIG_DIR = pathlib.Path("config")
 
