@@ -18,8 +18,8 @@ class App:
     pings: typing.Any = dataclasses.field(init=False)
 
     def __post_init__(self, metrics_path, pings_path):
-        glean.Glean.set_upload_enabled(True)
-        glean.Glean.initialize()
+        glean.set_upload_enabled(True)
+        glean.initialize()
 
         self.metrics = glean.load_metrics(metrics_path)
         self.pings = glean.load_pings(pings_path)

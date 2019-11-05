@@ -8,6 +8,16 @@ import dataclasses
 LOGGER = logging.getLogger("glean")
 
 
+def initialize() -> None:
+    LOGGER.debug("Initializing glean")
+    return None
+
+
+def set_upload_enabled(value: bool) -> None:
+    LOGGER.debug(f"Setting upload enabled to {value}")
+    return None
+
+
 @dataclasses.dataclass
 class LabeledCounter:
     label: str
