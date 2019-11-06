@@ -19,25 +19,27 @@ class App:
 
     def __post_init__(self, metrics_path, pings_path):
         glean.set_upload_enabled(True)
-        glean.initialize()
+        glean.initialize(app_id="burnham")
 
         self.metrics = glean.load_metrics(metrics_path)
         self.pings = glean.load_pings(pings_path)
 
+    def __del__(self) -> None:
+        """Send built-in Glean pings when the app is about to be destroyed."""
+        glean.send_all_pings()
+        glean.shutdown()
+
     def search(self, text: str) -> None:
         self.metrics.test.burnham.search_count["search_engine1"].record()
 
-    def send_ping(self) -> None:
-        self.pings.hello.send()
-
 
 def run_app() -> None:
-    app = App(CONFIG_DIR / "metrics.yaml", CONFIG_DIR / "pings.yaml")
+    app = App(CONFIG_DIR / "metrics.yaml", CONFIG_DIR / "pings.yaml",)
     app.search("mozilla firefox")
 
     print(f"📊 {dataclasses.asdict(app.metrics)}")
 
-    app.send_ping()
+    app.pings.hello.send()
 
 
 if __name__ == "__main__":

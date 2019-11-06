@@ -8,14 +8,20 @@ import dataclasses
 LOGGER = logging.getLogger("glean")
 
 
-def initialize() -> None:
-    LOGGER.debug("Initializing glean")
-    return None
+def shutdown() -> None:
+    LOGGER.debug("Shutting down.")
+
+
+def send_all_pings() -> None:
+    LOGGER.debug("Sending all built-in pings.")
+
+
+def initialize(*, app_id: str) -> None:
+    LOGGER.debug(f"Initializing glean with app_id {app_id}.")
 
 
 def set_upload_enabled(value: bool) -> None:
-    LOGGER.debug(f"Setting upload enabled to {value}")
-    return None
+    LOGGER.debug(f"Setting upload enabled to {value}.")
 
 
 @dataclasses.dataclass
@@ -49,7 +55,7 @@ class Metrics:
 
 
 def load_metrics(path: pathlib.Path) -> Metrics:
-    LOGGER.debug(f"Loading metrics from {path}")
+    LOGGER.debug(f"Loading metrics from {path}.")
     return Metrics(
         Category(
             SubCategory(
@@ -67,7 +73,7 @@ class Ping:
     name: str
 
     def send(self) -> None:
-        LOGGER.debug(f"Sending ping {self.name}")
+        LOGGER.debug(f"Sending ping {self.name}.")
 
 
 @dataclasses.dataclass
@@ -76,5 +82,5 @@ class Pings:
 
 
 def load_pings(path: pathlib.Path) -> Pings:
-    LOGGER.debug(f"Loading pings from {path}")
+    LOGGER.debug(f"Loading pings from {path}.")
     return Pings(Ping("hello"))
