@@ -24,7 +24,7 @@ setuptools.setup(
         "Repository": "https://github.com/hackebrot/burnham",
         "Issues": "https://github.com/hackebrot/burnham/issues",
     },
-    description="Python application for end-to-end testing Glean telemetry. 👩‍🚀",
+    description="Application for end-to-end testing Mozilla's Glean telemetry. 👩‍🚀",
     long_description=read("README.md"),
     long_description_content_type="text/markdown",
     packages=setuptools.find_packages("src"),

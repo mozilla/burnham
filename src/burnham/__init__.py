@@ -4,7 +4,7 @@
 
 __version__ = "0.1.0.dev0"
 __title__ = "burnham"
-__description__ = "Python application for end-to-end testing Glean telemetry. 👩‍🚀"
+__description__ = "Application for end-to-end testing Mozilla's Glean telemetry. 👩‍🚀"
 __url__ = "https://github.com/hackebrot/burnham"
 
 __author__ = "Raphael Pierzina"
