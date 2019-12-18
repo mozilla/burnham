@@ -1,3 +1,3 @@
 # burnham
 
-Python application for testing Glean telemetry. 👩‍🚀
+Python application for end-to-end testing Glean telemetry. 👩‍🚀
