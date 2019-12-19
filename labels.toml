@@ -28,10 +28,10 @@ color = "21c7a8"
 name = "docs"
 description = "Tasks to write and update documentation"
 
-[enhancement]
+[feature]
 color = "82aaff"
-name = "enhancement"
-description = "New feature or enhancement for burnham"
+name = "feature"
+description = "New feature for burnham"
 
 ["good first issue"]
 color = "7fdbca"
