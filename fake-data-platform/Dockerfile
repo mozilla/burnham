@@ -7,9 +7,9 @@ WORKDIR /home/fake-data-platform
 
 COPY requirements.txt requirements.txt
 RUN python -m venv venv
-RUN venv/bin/pip install -U pip
-RUN venv/bin/pip install -r requirements.txt
-RUN venv/bin/pip install gunicorn
+RUN venv/bin/python -m pip install -U pip
+RUN venv/bin/python -m pip install -r requirements.txt
+RUN venv/bin/python -m pip install gunicorn
 
 COPY app.py app.py
 
