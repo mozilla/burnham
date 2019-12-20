@@ -32,7 +32,7 @@ setuptools.setup(
     include_package_data=True,
     zip_safe=False,
     python_requires=">=3.7",
-    install_requires=["click>=7.0", "cffi==1.13.1"],
+    install_requires=["click>=7.0", "glean-sdk"],
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",
