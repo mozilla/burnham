@@ -1,0 +1,28 @@
+version: '3'
+services:
+  platform:
+    image: platform
+    build: fake-data-platform
+    container_name: platform
+  client1:
+    image: burnham
+    build: .
+    container_name: client1
+    command: "world"
+    depends_on:
+      - platform
+    links:
+      - platform
+    environment:
+      BURNHAM_PLATFORM_URL: http://platform:5000
+  client2:
+    image: burnham
+    build: .
+    container_name: client2
+    command: "fox"
+    depends_on:
+      - platform
+    links:
+      - platform
+    environment:
+      BURNHAM_PLATFORM_URL: http://platform:5000
