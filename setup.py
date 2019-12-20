@@ -30,6 +30,7 @@ setuptools.setup(
     packages=setuptools.find_packages("src"),
     package_dir={"": "src"},
     include_package_data=True,
+    package_data={"burnham": ["glean/*.yaml"]},
     zip_safe=False,
     python_requires=">=3.7",
     install_requires=["click>=7.0", "glean-sdk"],
