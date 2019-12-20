@@ -27,6 +27,5 @@ def fixture_run_cli() -> typing.Callable:
 def test_cli(run_cli: typing.Callable) -> None:
     """Test the burnham CLI."""
 
-    result = run_cli("World")
+    result = run_cli("--help")
     assert result.exit_code == 0
-    assert result.output == f"Hello World! 👩‍🚀\n"
