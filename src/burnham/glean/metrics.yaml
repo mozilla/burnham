@@ -1,0 +1,26 @@
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$schema: moz://mozilla.org/schemas/glean/metrics/1-0-0
+
+test.burnham:
+  search_count:
+    type: labeled_counter
+    description: >
+      Counts the number of searches that are done in the application.
+      The labels for this counter are the the different search engines.
+    labels:
+      - search_engine1
+      - search_engine2
+      - search_engine2
+    send_in_pings:
+      - metrics
+      - baseline
+    bugs:
+      - 🚧
+    data_reviews:
+      - 🚧
+    notification_emails:
+      - 🚧
+    expires: never
