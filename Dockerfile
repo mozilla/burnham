@@ -1,11 +1,6 @@
-FROM python:3.7-alpine as dist
+FROM python:3.7-slim-buster as wheels
 
 LABEL maintainer "Raphael Pierzina <raphael@hackebrot.de>"
-
-RUN apk add --no-cache --virtual \
-    python3-dev \
-    libffi-dev \
-    build-base
 
 COPY . /usr/src/burnham/
 WORKDIR /usr/src/burnham
@@ -13,21 +8,19 @@ WORKDIR /usr/src/burnham
 RUN python -m pip install --upgrade --no-cache-dir \
     pip \
     setuptools \
-    wheel \
-    pep517 \
-    && python -m pep517.build . \
-    && mv /usr/src/burnham/dist /dist
+    wheel
+RUN python -m pip wheel -w /wheels .
 
-FROM python:3.7-alpine
+FROM python:3.7-slim-buster
 
 LABEL maintainer "Raphael Pierzina <raphael@hackebrot.de>"
 
-COPY --from=dist /dist/*.whl /tmp/dist/
+COPY --from=wheels /wheels/*.whl /tmp/wheels/
 
 RUN python -m venv venv
-RUN source venv/bin/activate
+RUN . venv/bin/activate
 
 RUN python -m pip install --upgrade pip
-RUN python -m pip install /tmp/dist/*.whl
+RUN python -m pip install /tmp/wheels/*.whl
 
 ENTRYPOINT [ "burnham" ]
