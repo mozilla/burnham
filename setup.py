@@ -32,7 +32,7 @@ setuptools.setup(
     include_package_data=True,
     zip_safe=False,
     python_requires=">=3.7",
-    install_requires=["click>=7.0"],
+    install_requires=["click>=7.0", "cffi==1.13.1"],
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",
