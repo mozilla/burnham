@@ -4,9 +4,11 @@
 
 import typing
 import flask
+import logging
 
 
 app = flask.Flask(__name__)
+app.logger.setLevel(logging.DEBUG)
 
 
 @app.route("/heartbeat")
@@ -20,6 +22,8 @@ def glean_ping(
     app_id: str, ping_name: str, schema_version: str, doc_id: str
 ) -> typing.Any:
     """Endpoint for submitting glean pings."""
+
+    app.logger.debug(flask.request.data)
 
     return flask.jsonify(
         {
