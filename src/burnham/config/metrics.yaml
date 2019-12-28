@@ -6,7 +6,7 @@ $schema: moz://mozilla.org/schemas/glean/metrics/1-0-0
 
 test.burnham:
   test_run:
-    type: uuid
+    type: string
     description: >
       ID of the current test run.
     lifetime:
