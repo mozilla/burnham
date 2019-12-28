@@ -8,21 +8,27 @@ services:
     image: burnham
     build: .
     container_name: client1
-    command: "world"
     depends_on:
       - platform
     links:
       - platform
     environment:
       BURNHAM_PLATFORM_URL: http://platform:5000
+      BURNHAM_VERBOSE: 1
+      BURNHAM_TELEMETRY: 1
+      BURNHAM_TEST_RUN: "1234"
+      BURNHAM_TEST_NAME: "test_space_travel"
   client2:
     image: burnham
     build: .
     container_name: client2
-    command: "fox"
     depends_on:
       - platform
     links:
       - platform
     environment:
       BURNHAM_PLATFORM_URL: http://platform:5000
+      BURNHAM_VERBOSE: 1
+      BURNHAM_TELEMETRY: 0
+      BURNHAM_TEST_RUN: "1234"
+      BURNHAM_TEST_NAME: "test_space_travel"
