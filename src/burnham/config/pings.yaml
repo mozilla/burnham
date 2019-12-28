@@ -4,12 +4,35 @@
 
 $schema: moz://mozilla.org/schemas/glean/pings/1-0-0
 
-hello:
+test_start:
   description: >
-    This ping is a custom ping.
+    This ping indicates the start of the test run.
+  include_client_id: true
   bugs:
-    - 🚧
+    - https://github.com/hackebrot/burnham/issues/5
   data_reviews:
-    - 🚧
+    - https://github.com/hackebrot/burnham/issues/6
   notification_emails:
-    - 🚧
+    - raphael@mozilla.com
+
+test_finish:
+  description: >
+    This ping indicates the end of the test run.
+  include_client_id: true
+  bugs:
+    - https://github.com/hackebrot/burnham/issues/5
+  data_reviews:
+    - https://github.com/hackebrot/burnham/issues/6
+  notification_emails:
+    - raphael@mozilla.com
+
+discovery:
+  description: >
+    Custom ping sent by the burnham CLI app.
+  include_client_id: true
+  bugs:
+    - https://github.com/hackebrot/burnham/issues/5
+  data_reviews:
+    - https://github.com/hackebrot/burnham/issues/6
+  notification_emails:
+    - raphael@mozilla.com
