@@ -5,22 +5,56 @@
 $schema: moz://mozilla.org/schemas/glean/metrics/1-0-0
 
 test.burnham:
-  search_count:
+  test_run:
+    type: uuid
+    description: >
+      ID of the current test run.
+    lifetime:
+      application
+    send_in_pings:
+      - discovery
+      - test_start
+      - test_finish
+    bugs:
+      - https://github.com/hackebrot/burnham/issues/5
+    data_reviews:
+      - https://github.com/hackebrot/burnham/issues/6
+    notification_emails:
+      - raphael@mozilla.com
+    expires: never
+
+  test_name:
+    type: string
+    description: >
+      Name of the current test.
+    lifetime:
+      application
+    send_in_pings:
+      - discovery
+      - test_start
+      - test_finish
+    bugs:
+      - https://github.com/hackebrot/burnham/issues/5
+    data_reviews:
+      - https://github.com/hackebrot/burnham/issues/6
+    notification_emails:
+      - raphael@mozilla.com
+    expires: never
+
+  space_travel:
     type: labeled_counter
     description: >
-      Counts the number of searches that are done in the application.
-      The labels for this counter are the the different search engines.
+      Counts the number of times a technology is used to travel through
+      space.
     labels:
-      - search_engine1
-      - search_engine2
-      - search_engine3
+      - warp_drive
+      - spore_drive
     send_in_pings:
-      - metrics
-      - baseline
+      - discovery
     bugs:
-      - 🚧
+      - https://github.com/hackebrot/burnham/issues/5
     data_reviews:
-      - 🚧
+      - https://github.com/hackebrot/burnham/issues/6
     notification_emails:
-      - 🚧
+      - raphael@mozilla.com
     expires: never
