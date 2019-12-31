@@ -49,6 +49,22 @@ from . import __version__
     envvar="BURNHAM_TEST_NAME",
 )
 @click.option(
+    "-e",
+    "--experiment",
+    help="ID of an active experiment",
+    type=str,
+    required=False,
+    envvar="BURNHAM_EXPERIMENT",
+)
+@click.option(
+    "-b",
+    "--experiment-branch",
+    help="Branch name of an active experiment",
+    type=str,
+    required=False,
+    envvar="BURNHAM_EXPERIMENT_BRANCH",
+)
+@click.option(
     "-v",
     "--verbose",
     help="Print debug information to the console",
@@ -58,7 +74,13 @@ from . import __version__
     envvar="BURNHAM_VERBOSE",
 )
 def burnham(
-    platform: str, telemetry: bool, test_run: str, test_name: str, verbose: bool
+    platform: str,
+    telemetry: bool,
+    test_run: str,
+    test_name: str,
+    experiment: str,
+    experiment_branch: str,
+    verbose: bool,
 ) -> None:
     """Send a GET request to the platform and print the response."""
 
@@ -66,6 +88,8 @@ def burnham(
     click.echo(f"telemetry: {telemetry}")
     click.echo(f"test_run: {test_run}")
     click.echo(f"test_name: {test_name}")
+    click.echo(f"experiment: {experiment}")
+    click.echo(f"experiment-branch: {experiment_branch}")
     click.echo(f"verbose: {verbose}")
 
     metrics = glean.load_metrics(
@@ -82,8 +106,13 @@ def burnham(
     Glean.initialize(
         application_id="burnham",
         application_version=__version__,
-        configuration=Configuration(server_endpoint=platform, log_pings=verbose,),
+        configuration=Configuration(server_endpoint=platform, log_pings=verbose),
     )
+
+    if experiment is not None and experiment_branch is not None:
+        Glean.set_experiment_active(
+            experiment_id=experiment, branch=experiment_branch,
+        )
 
     metrics.test.burnham.test_run.set(test_run)
     metrics.test.burnham.test_name.set(test_name)
