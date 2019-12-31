@@ -18,6 +18,8 @@ services:
       BURNHAM_TELEMETRY: 1
       BURNHAM_TEST_RUN: "1234"
       BURNHAM_TEST_NAME: "test_space_travel"
+      BURNHAM_EXPERIMENT: "time_travel"
+      BURNHAM_EXPERIMENT_BRANCH: "wormhole"
   client2:
     image: burnham
     build: .
