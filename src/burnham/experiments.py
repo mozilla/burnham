@@ -66,6 +66,6 @@ class Experiment(metaclass=ExperimentMeta):
     branch: str
     active: bool
 
-    def __init__(self, branch: str, active: bool) -> None:
+    def __init__(self, branch: str = "default", active: bool = False) -> None:
         self.branch = branch
         self.active = active
