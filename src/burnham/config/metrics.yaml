@@ -54,3 +54,19 @@ test.burnham:
     notification_emails:
       - raphael@mozilla.com
     expires: never
+
+  position:
+    type: string
+    description: >
+      The current position of the discovery.
+    lifetime:
+      application
+    send_in_pings:
+      - discovery
+    bugs:
+      - https://github.com/hackebrot/burnham/issues/5
+    data_reviews:
+      - https://github.com/hackebrot/burnham/issues/6
+    notification_emails:
+      - raphael@mozilla.com
+    expires: never
