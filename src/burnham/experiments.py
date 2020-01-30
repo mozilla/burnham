@@ -6,6 +6,7 @@ from __future__ import annotations
 
 from typing import Any, Callable, ClassVar, Type
 
+from glean import Glean
 from wrapt import decorator
 
 from burnham.exceptions import ExperimentError
@@ -21,8 +22,19 @@ class Active:
         return self.value
 
     def __set__(self, experiment: Experiment, value: bool) -> None:
-        if self.value is value:
-            return
+        """Called to set the 'active' status on an Experiment.
+
+        This also updates the status in Glean.
+        """
+
+        if value is True:
+            Glean.set_experiment_active(
+                experiment_id=experiment.identifier, branch=experiment.branch,
+            )
+
+        if value is False:
+            Glean.set_experiment_inactive(experiment.identifier)
+
         self.value = value
 
     def __set_name__(self, experiment_cls: Type[Experiment], name: str) -> None:
@@ -69,3 +81,12 @@ class Experiment(metaclass=ExperimentMeta):
     def __init__(self, branch: str = "default", active: bool = False) -> None:
         self.branch = branch
         self.active = active
+
+
+class SporeDrive(Experiment):
+    """Experimental space-travel technology."""
+
+    identifier: ClassVar[str] = "spore_drive"
+
+    def __call__(self, coordinates: str) -> str:
+        return coordinates
