@@ -1,0 +1,72 @@
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$schema: moz://mozilla.org/schemas/glean/metrics/1-0-0
+
+test.burnham:
+  test_run:
+    type: string
+    description: >
+      ID of the current test run.
+    lifetime:
+      application
+    send_in_pings:
+      - discovery
+    bugs:
+      - https://github.com/hackebrot/burnham/issues/5
+    data_reviews:
+      - https://github.com/hackebrot/burnham/issues/6
+    notification_emails:
+      - raphael@mozilla.com
+    expires: never
+
+  test_name:
+    type: string
+    description: >
+      Name of the current test.
+    lifetime:
+      application
+    send_in_pings:
+      - discovery
+    bugs:
+      - https://github.com/hackebrot/burnham/issues/5
+    data_reviews:
+      - https://github.com/hackebrot/burnham/issues/6
+    notification_emails:
+      - raphael@mozilla.com
+    expires: never
+
+  space_travel:
+    type: labeled_counter
+    description: >
+      Counts the number of times a technology is used to travel through
+      space.
+    labels:
+      - warp_drive
+      - spore_drive
+    send_in_pings:
+      - discovery
+    bugs:
+      - https://github.com/hackebrot/burnham/issues/5
+    data_reviews:
+      - https://github.com/hackebrot/burnham/issues/6
+    notification_emails:
+      - raphael@mozilla.com
+    expires: never
+
+  position:
+    type: string
+    description: >
+      The current position of the discovery.
+    lifetime:
+      application
+    send_in_pings:
+      - discovery
+    bugs:
+      - https://github.com/hackebrot/burnham/issues/5
+    data_reviews:
+      - https://github.com/hackebrot/burnham/issues/6
+    notification_emails:
+      - raphael@mozilla.com
+    expires: never

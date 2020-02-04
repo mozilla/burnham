@@ -8,21 +8,46 @@ services:
     image: burnham
     build: .
     container_name: client1
-    command: "world"
     depends_on:
       - platform
     links:
       - platform
     environment:
       BURNHAM_PLATFORM_URL: http://platform:5000
+      BURNHAM_VERBOSE: 1
+      BURNHAM_TELEMETRY: 1
+      BURNHAM_TEST_RUN: "1234"
+      BURNHAM_TEST_NAME: "test_space_travel"
+      BURNHAM_SPORE_DRIVE: "tardigrade"
+      BURNHAM_MISSION: "two_warps_and_one_jump"
   client2:
     image: burnham
     build: .
     container_name: client2
-    command: "fox"
     depends_on:
       - platform
     links:
       - platform
     environment:
       BURNHAM_PLATFORM_URL: http://platform:5000
+      BURNHAM_VERBOSE: 1
+      BURNHAM_TELEMETRY: 0
+      BURNHAM_TEST_RUN: "1234"
+      BURNHAM_TEST_NAME: "test_space_travel"
+      BURNHAM_MISSION: "one_warp"
+  client3:
+    image: burnham
+    build: .
+    container_name: client3
+    depends_on:
+      - platform
+    links:
+      - platform
+    environment:
+      BURNHAM_PLATFORM_URL: http://platform:5000
+      BURNHAM_VERBOSE: 1
+      BURNHAM_TELEMETRY: 1
+      BURNHAM_TEST_RUN: "1234"
+      BURNHAM_TEST_NAME: "test_space_travel"
+      BURNHAM_MISSION: "one_jump_to_unknown_destination"
+      BURNHAM_SPORE_DRIVE: "tardigrade-dna"

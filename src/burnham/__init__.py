@@ -12,3 +12,9 @@ __email__ = "raphael@hackebrot.de"
 
 __license__ = "MPL 2.0"
 __copyright__ = "Copyright (c) 2019 Raphael Pierzina"
+
+from glean import load_metrics, load_pings
+from pkg_resources import resource_filename
+
+metrics = load_metrics(resource_filename(__name__, "config/metrics.yaml"))
+pings = load_pings(resource_filename(__name__, "config/pings.yaml"))

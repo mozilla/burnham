@@ -1,0 +1,16 @@
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$schema: moz://mozilla.org/schemas/glean/pings/1-0-0
+
+discovery:
+  description: >
+    Custom ping sent by the burnham CLI app.
+  include_client_id: true
+  bugs:
+    - https://github.com/hackebrot/burnham/issues/5
+  data_reviews:
+    - https://github.com/hackebrot/burnham/issues/6
+  notification_emails:
+    - raphael@mozilla.com

@@ -2,13 +2,13 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-# See https://flask.palletsprojects.com/en/1.1.x/patterns/singlepageapplications/
-
 import typing
 import flask
+import logging
 
 
 app = flask.Flask(__name__)
+app.logger.setLevel(logging.DEBUG)
 
 
 @app.route("/heartbeat")
@@ -17,8 +17,19 @@ def heartbeat() -> typing.Any:
     return flask.jsonify({"status": "healthy"})
 
 
-@app.route("/", defaults={"path": ""})
-@app.route("/<path:path>")
-def catch_all(path: str) -> str:
-    """Return a response with the requested path."""
-    return f"path: '{path}'"
+@app.route("/submit/<app_id>/<ping_name>/<schema_version>/<doc_id>", methods=["POST"])
+def glean_ping(
+    app_id: str, ping_name: str, schema_version: str, doc_id: str
+) -> typing.Any:
+    """Endpoint for submitting glean pings."""
+
+    app.logger.debug(flask.request.data)
+
+    return flask.jsonify(
+        {
+            "app_id": app_id,
+            "ping_name": ping_name,
+            "schema_version": schema_version,
+            "doc_id": doc_id,
+        }
+    )
