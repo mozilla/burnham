@@ -16,7 +16,7 @@ services:
       BURNHAM_PLATFORM_URL: http://platform:5000
       BURNHAM_VERBOSE: 1
       BURNHAM_TELEMETRY: 1
-      BURNHAM_TEST_RUN: "1234"
+      BURNHAM_TEST_RUN: "11111111-aaaa-bbbb-cccc-123455555555"
       BURNHAM_TEST_NAME: "test_space_travel"
       BURNHAM_SPORE_DRIVE: "tardigrade"
       BURNHAM_MISSION: "two_warps_and_one_jump"
@@ -32,7 +32,7 @@ services:
       BURNHAM_PLATFORM_URL: http://platform:5000
       BURNHAM_VERBOSE: 1
       BURNHAM_TELEMETRY: 0
-      BURNHAM_TEST_RUN: "1234"
+      BURNHAM_TEST_RUN: "11111111-aaaa-bbbb-cccc-123455555555"
       BURNHAM_TEST_NAME: "test_space_travel"
       BURNHAM_MISSION: "one_warp"
   client3:
@@ -47,7 +47,7 @@ services:
       BURNHAM_PLATFORM_URL: http://platform:5000
       BURNHAM_VERBOSE: 1
       BURNHAM_TELEMETRY: 1
-      BURNHAM_TEST_RUN: "1234"
+      BURNHAM_TEST_RUN: "11111111-aaaa-bbbb-cccc-123455555555"
       BURNHAM_TEST_NAME: "test_space_travel"
       BURNHAM_MISSION: "one_jump_to_unknown_destination"
       BURNHAM_SPORE_DRIVE: "tardigrade-dna"
