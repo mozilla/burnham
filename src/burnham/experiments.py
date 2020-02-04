@@ -81,12 +81,3 @@ class Experiment(metaclass=ExperimentMeta):
     def __init__(self, branch: str = "default", active: bool = False) -> None:
         self.branch = branch
         self.active = active
-
-
-class SporeDrive(Experiment):
-    """Experimental space-travel technology."""
-
-    identifier: ClassVar[str] = "spore_drive"
-
-    def __call__(self, coordinates: str) -> str:
-        return coordinates

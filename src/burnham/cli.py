@@ -2,19 +2,23 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import urllib.request
+import sys
+
 import click
+from glean import Glean
+from glean.config import Configuration
 
-import glean
-import pkg_resources
-
-from . import __version__
+from burnham import __title__, __version__
+from burnham.exceptions import BurnhamError
+from burnham.missions import MissionBase
+from burnham.space_travel import Discovery, SporeDrive, WarpDrive
 
 
 @click.command()
 @click.version_option(
     __version__, "-V", "--version",
 )
+@click.argument("mission_name", envvar="BURNHAM_MISSION", type=str)
 @click.option(
     "-p",
     "--platform",
@@ -49,20 +53,12 @@ from . import __version__
     envvar="BURNHAM_TEST_NAME",
 )
 @click.option(
-    "-e",
-    "--experiment",
-    help="ID of an active experiment",
-    type=str,
+    "-s",
+    "--spore-drive",
+    help="Interface for the spore-drive technology",
+    type=click.Choice(["tardigrade", "tardigrade-dna"]),
     required=False,
-    envvar="BURNHAM_EXPERIMENT",
-)
-@click.option(
-    "-b",
-    "--experiment-branch",
-    help="Branch name of an active experiment",
-    type=str,
-    required=False,
-    envvar="BURNHAM_EXPERIMENT_BRANCH",
+    envvar="BURNHAM_SPORE_DRIVE",
 )
 @click.option(
     "-v",
@@ -74,51 +70,36 @@ from . import __version__
     envvar="BURNHAM_VERBOSE",
 )
 def burnham(
+    mission_name: str,
     platform: str,
     telemetry: bool,
     test_run: str,
     test_name: str,
-    experiment: str,
-    experiment_branch: str,
+    spore_drive: str,
     verbose: bool,
 ) -> None:
-    """Send a GET request to the platform and print the response."""
+    """Entrypoint for the burnham CLI app."""
 
-    click.echo(f"platform: {platform}")
-    click.echo(f"telemetry: {telemetry}")
-    click.echo(f"test_run: {test_run}")
-    click.echo(f"test_name: {test_name}")
-    click.echo(f"experiment: {experiment}")
-    click.echo(f"experiment-branch: {experiment_branch}")
-    click.echo(f"verbose: {verbose}")
-
-    metrics = glean.load_metrics(
-        pkg_resources.resource_filename(__name__, "config/metrics.yaml")
-    )
-    pings = glean.load_pings(
-        pkg_resources.resource_filename(__name__, "config/pings.yaml")
-    )
-
-    from glean.config import Configuration
-    from glean import Glean
-
-    Glean.set_upload_enabled(telemetry)
     Glean.initialize(
-        application_id="burnham",
+        application_id=__title__,
         application_version=__version__,
+        upload_enabled=telemetry,
         configuration=Configuration(server_endpoint=platform, log_pings=verbose),
     )
 
-    if experiment is not None and experiment_branch is not None:
-        Glean.set_experiment_active(
-            experiment_id=experiment, branch=experiment_branch,
+    if mission_name not in MissionBase.missions:
+        click.echo(f"Invalid mission name '{mission_name}'.", err=True)
+        sys.exit(1)
+
+    try:
+        MissionBase.missions[mission_name].start(
+            Discovery(
+                warp_drive=WarpDrive(),
+                spore_drive=SporeDrive(
+                    branch=spore_drive, active=spore_drive is not None
+                ),
+            )
         )
-
-    metrics.test.burnham.test_run.set(test_run)
-    metrics.test.burnham.test_name.set(test_name)
-    pings.test_start.send()
-
-    metrics.test.burnham.space_travel["warp_drive"].add(4)
-    pings.discovery.send()
-
-    pings.test_finish.send()
+    except BurnhamError as exc:
+        click.echo(f"An error has occured: {exc}", err=True)
+        sys.exit(1)

@@ -6,6 +6,7 @@ from __future__ import annotations
 
 from typing import ClassVar
 
+from burnham import metrics
 from burnham.experiments import Experiment
 
 
@@ -13,6 +14,7 @@ class WarpDrive:
     """Space-travel technology."""
 
     def __call__(self, coordinates: str) -> str:
+        metrics.test.burnham.space_travel["warp_drive"].add(1)
         return coordinates
 
 
@@ -22,6 +24,7 @@ class SporeDrive(Experiment):
     identifier: ClassVar[str] = "spore_drive"
 
     def __call__(self, coordinates: str) -> str:
+        metrics.test.burnham.space_travel["spore_drive"].add(1)
         return coordinates
 
 
@@ -40,6 +43,7 @@ class Discovery:
     def warp(self, coordinates: str) -> None:
         """Warp to the given coordinates using the WarpDrive."""
         self.position = self.warp_drive(coordinates)
+        metrics.test.burnham.position.set(self.position)
 
     def jump(self, coordinates: str) -> None:
         """Jump to the given coordinates using the SporeDrive.
@@ -47,3 +51,4 @@ class Discovery:
         This requires the SporeDrive Experiment to be added and active.
         """
         self.position = self.spore_drive(coordinates)
+        metrics.test.burnham.position.set(self.position)
