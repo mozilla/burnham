@@ -8,7 +8,7 @@ import click
 from glean import Glean
 from glean.config import Configuration
 
-from burnham import __title__, __version__
+from burnham import __title__, __version__, metrics
 from burnham.exceptions import BurnhamError
 from burnham.missions import MissionBase
 from burnham.space_travel import Discovery, SporeDrive, WarpDrive
@@ -86,6 +86,9 @@ def burnham(
         upload_enabled=telemetry,
         configuration=Configuration(server_endpoint=platform, log_pings=verbose),
     )
+
+    metrics.test.burnham.test_run.set(test_run)
+    metrics.test.burnham.test_name.set(test_name)
 
     if mission_name not in MissionBase.missions:
         click.echo(f"Invalid mission name '{mission_name}'.", err=True)
