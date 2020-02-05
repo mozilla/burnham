@@ -4,7 +4,8 @@
 
 from __future__ import annotations
 
-from typing import Any, Callable, ClassVar, Type
+from collections import defaultdict
+from typing import Any, Callable, ClassVar, Dict, Type
 
 from glean import Glean
 from wrapt import decorator
@@ -15,11 +16,11 @@ from burnham.exceptions import ExperimentError
 class Active:
     """Descriptor for the active status of an Experiment."""
 
-    def __init__(self, default: bool = False) -> None:
-        self.value = default
+    def __init__(self) -> None:
+        self.values: Dict[Experiment, bool] = defaultdict(bool)
 
     def __get__(self, experiment: Experiment, experiment_cls: Type[Experiment]) -> bool:
-        return self.value
+        return self.values[experiment]
 
     def __set__(self, experiment: Experiment, value: bool) -> None:
         """Called to set the 'active' status on an Experiment.
@@ -35,7 +36,7 @@ class Active:
         if value is False:
             Glean.set_experiment_inactive(experiment.identifier)
 
-        self.value = value
+        self.values[experiment] = value
 
     def __set_name__(self, experiment_cls: Type[Experiment], name: str) -> None:
         self.experiment_cls = experiment_cls
