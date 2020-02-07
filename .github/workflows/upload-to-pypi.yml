@@ -20,9 +20,9 @@ jobs:
           python -m pip install --upgrade --no-cache-dir
           pip wheel pep517 twine
       - name: Package project
-        run: python -m pep517.build .
+        run: python -m pep517.build application/
       - name: Upload distributions
         env:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
-        run: twine upload dist/*
+        run: twine upload application/dist/*
