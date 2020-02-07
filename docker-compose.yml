@@ -6,7 +6,7 @@ services:
     container_name: platform
   client1:
     image: burnham
-    build: .
+    build: application
     container_name: client1
     depends_on:
       - platform
@@ -22,7 +22,7 @@ services:
       BURNHAM_MISSION: "two_warps_and_one_jump"
   client2:
     image: burnham
-    build: .
+    build: application
     container_name: client2
     depends_on:
       - platform
@@ -37,7 +37,7 @@ services:
       BURNHAM_MISSION: "one_warp"
   client3:
     image: burnham
-    build: .
+    build: application
     container_name: client3
     depends_on:
       - platform
