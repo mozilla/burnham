@@ -78,7 +78,11 @@ def burnham(
     spore_drive: str,
     verbose: bool,
 ) -> None:
-    """Entrypoint for the burnham CLI app."""
+    """Travel through space and complete missions with the Discovery crew.
+
+    If telemetry is enabled, measure, collect, and submit non-personal
+    information to the specified data platform with Glean.
+    """
 
     Glean.initialize(
         application_id=__title__,
