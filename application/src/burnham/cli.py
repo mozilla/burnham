@@ -15,26 +15,18 @@ from burnham.space_travel import Discovery, SporeDrive, WarpDrive
 
 
 @click.command()
+@click.argument("mission_name", envvar="BURNHAM_MISSION", type=str)
 @click.version_option(
     __version__, "-V", "--version",
 )
-@click.argument("mission_name", envvar="BURNHAM_MISSION", type=str)
 @click.option(
-    "-p",
-    "--platform",
-    help="Data Platform URL",
-    type=str,
-    required=True,
-    envvar="BURNHAM_PLATFORM_URL",
-)
-@click.option(
-    "-t",
-    "--telemetry",
-    help="Enable telemetry recording and submission",
+    "-v",
+    "--verbose",
+    help="Print debug information to the console",
     type=bool,
     default=False,
     is_flag=True,
-    envvar="BURNHAM_TELEMETRY",
+    envvar="BURNHAM_VERBOSE",
 )
 @click.option(
     "-r",
@@ -53,6 +45,23 @@ from burnham.space_travel import Discovery, SporeDrive, WarpDrive
     envvar="BURNHAM_TEST_NAME",
 )
 @click.option(
+    "-t",
+    "--telemetry",
+    help="Enable telemetry recording and submission",
+    type=bool,
+    default=False,
+    is_flag=True,
+    envvar="BURNHAM_TELEMETRY",
+)
+@click.option(
+    "-p",
+    "--platform",
+    help="Data Platform URL",
+    type=str,
+    required=True,
+    envvar="BURNHAM_PLATFORM_URL",
+)
+@click.option(
     "-s",
     "--spore-drive",
     help="Interface for the spore-drive technology",
@@ -60,23 +69,14 @@ from burnham.space_travel import Discovery, SporeDrive, WarpDrive
     required=False,
     envvar="BURNHAM_SPORE_DRIVE",
 )
-@click.option(
-    "-v",
-    "--verbose",
-    help="Print debug information to the console",
-    type=bool,
-    default=False,
-    is_flag=True,
-    envvar="BURNHAM_VERBOSE",
-)
 def burnham(
     mission_name: str,
-    platform: str,
-    telemetry: bool,
+    verbose: bool,
     test_run: str,
     test_name: str,
+    telemetry: bool,
+    platform: str,
     spore_drive: str,
-    verbose: bool,
 ) -> None:
     """Travel through space and complete missions with the Discovery crew.
 
