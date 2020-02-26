@@ -2,6 +2,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+---
+
 $schema: moz://mozilla.org/schemas/glean/metrics/1-0-0
 
 test.burnham:
@@ -40,8 +42,7 @@ test.burnham:
   space_travel:
     type: labeled_counter
     description: >
-      Counts the number of times a technology is used to travel through
-      space.
+      Counts the number of times a space-travel technology is used.
     labels:
       - warp_drive
       - spore_drive
@@ -55,10 +56,26 @@ test.burnham:
       - raphael@mozilla.com
     expires: never
 
-  position:
+  mission:
     type: string
     description: >
-      The current position of the discovery.
+      The identifier of the current mission.
+    lifetime:
+      application
+    send_in_pings:
+      - discovery
+    bugs:
+      - https://github.com/hackebrot/burnham/issues/5
+    data_reviews:
+      - https://github.com/hackebrot/burnham/issues/6
+    notification_emails:
+      - raphael@mozilla.com
+    expires: never
+
+  status:
+    type: string
+    description: >
+      The current status of space ship.
     lifetime:
       application
     send_in_pings:
