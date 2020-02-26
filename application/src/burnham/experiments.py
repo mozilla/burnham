@@ -28,12 +28,12 @@ class Active:
         This also updates the status in Glean.
         """
 
-        if value is True:
+        if value is True and self.values[experiment] is False:
             Glean.set_experiment_active(
                 experiment_id=experiment.identifier, branch=experiment.branch,
             )
 
-        if value is False:
+        if value is False and self.values[experiment] is True:
             Glean.set_experiment_inactive(experiment.identifier)
 
         self.values[experiment] = value
