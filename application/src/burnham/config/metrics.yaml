@@ -6,8 +6,8 @@
 
 $schema: moz://mozilla.org/schemas/glean/metrics/1-0-0
 
-test.burnham:
-  test_run:
+test:
+  run:
     type: uuid
     description: >
       ID of the current test run.
@@ -23,7 +23,7 @@ test.burnham:
       - raphael@mozilla.com
     expires: never
 
-  test_name:
+  name:
     type: string
     description: >
       Name of the current test.
@@ -39,6 +39,7 @@ test.burnham:
       - raphael@mozilla.com
     expires: never
 
+technology:
   space_travel:
     type: labeled_counter
     description: >
@@ -56,7 +57,8 @@ test.burnham:
       - raphael@mozilla.com
     expires: never
 
-  mission:
+mission:
+  identifier:
     type: string
     description: >
       The identifier of the current mission.
