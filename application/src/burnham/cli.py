@@ -2,6 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import logging
 import sys
 
 import click
@@ -10,12 +11,11 @@ from glean.config import Configuration
 
 from burnham import __title__, __version__, metrics
 from burnham.exceptions import BurnhamError
-from burnham.missions import MissionBase
 from burnham.space_travel import Discovery, SporeDrive, WarpDrive
 
 
 @click.command()
-@click.argument("mission_name", envvar="BURNHAM_MISSION", type=str)
+@click.argument("mission_identifier", envvar="BURNHAM_MISSION", type=str)
 @click.version_option(
     __version__, "-V", "--version",
 )
@@ -70,7 +70,7 @@ from burnham.space_travel import Discovery, SporeDrive, WarpDrive
     envvar="BURNHAM_SPORE_DRIVE",
 )
 def burnham(
-    mission_name: str,
+    mission_identifier: str,
     verbose: bool,
     test_run: str,
     test_name: str,
@@ -84,6 +84,11 @@ def burnham(
     information to the specified data platform with Glean.
     """
 
+    if verbose:
+        logging.basicConfig(level=logging.DEBUG)
+    else:
+        logging.basicConfig(level=logging.INFO)
+
     Glean.initialize(
         application_id=__title__,
         application_version=__version__,
@@ -91,22 +96,15 @@ def burnham(
         configuration=Configuration(server_endpoint=platform, log_pings=verbose),
     )
 
-    metrics.test.burnham.test_run.set(test_run)
-    metrics.test.burnham.test_name.set(test_name)
-
-    if mission_name not in MissionBase.missions:
-        click.echo(f"Invalid mission name '{mission_name}'.", err=True)
-        sys.exit(1)
+    metrics.test.run.set(test_run)
+    metrics.test.name.set(test_name)
 
     try:
-        MissionBase.missions[mission_name].start(
-            Discovery(
-                warp_drive=WarpDrive(),
-                spore_drive=SporeDrive(
-                    branch=spore_drive, active=spore_drive is not None
-                ),
-            )
+        space_ship = Discovery(
+            warp_drive=WarpDrive(),
+            spore_drive=SporeDrive(branch=spore_drive, active=spore_drive is not None),
         )
-    except BurnhamError as exc:
-        click.echo(f"An error has occured: {exc}", err=True)
+        space_ship.complete_mission(identifier=mission_identifier)
+    except BurnhamError as err:
+        click.echo(f"Error: {err}", err=True)
         sys.exit(1)
