@@ -4,19 +4,19 @@ services:
     image: platform
     build: fake-data-platform
     container_name: platform
-  tests:
-    image: tests
-    build: .
-    container_name: tests
-    depends_on:
-      - platform
-    links:
-      - platform
-    command: >
-      -v
-      -s
-      --platform http://platform:5000
-      --run-id 11111111-aaaa-bbbb-cccc-123455555555
+  # tests:
+  #   image: tests
+  #   build: .
+  #   container_name: tests
+  #   depends_on:
+  #     - platform
+  #   links:
+  #     - platform
+  #   command: >
+  #     -v
+  #     -s
+  #     --platform http://platform:5000
+  #     --run-id 11111111-aaaa-bbbb-cccc-123455555555
   cli1:
     image: burnham
     build: application
