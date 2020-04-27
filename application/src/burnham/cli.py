@@ -4,18 +4,41 @@
 
 import logging
 import sys
+from typing import Tuple
 
 import click
-from glean import Glean
-from glean.config import Configuration
 
 from burnham import __title__, __version__, metrics
 from burnham.exceptions import BurnhamError
+from burnham.missions import Mission, complete_mission, missions_by_identifier
 from burnham.space_travel import Discovery, SporeDrive, WarpDrive
+from glean import Glean
+from glean.config import Configuration
+
+
+class MissionParamType(click.ParamType):
+    """Custom Param Type for space-travel missions."""
+
+    def convert(self, value, param, ctx) -> Mission:
+        """Look up Mission by its identifier."""
+        identifier = click.STRING(value, param, ctx)
+
+        if identifier not in missions_by_identifier:
+            raise click.BadParameter(
+                f'Unknown mission identifier "{identifier}"', ctx, param,
+            )
+
+        return missions_by_identifier[identifier]
 
 
 @click.command()
-@click.argument("mission_identifier", envvar="BURNHAM_MISSION", type=str)
+@click.argument(
+    "missions",
+    envvar="BURNHAM_MISSIONS",
+    type=MissionParamType(),
+    nargs=-1,
+    required=True,
+)
 @click.version_option(
     __version__, "-V", "--version",
 )
@@ -70,7 +93,7 @@ from burnham.space_travel import Discovery, SporeDrive, WarpDrive
     envvar="BURNHAM_SPORE_DRIVE",
 )
 def burnham(
-    mission_identifier: str,
+    missions: Tuple[Mission],
     verbose: bool,
     test_run: str,
     test_name: str,
@@ -99,12 +122,14 @@ def burnham(
     metrics.test.run.set(test_run)
     metrics.test.name.set(test_name)
 
+    space_ship = Discovery(
+        warp_drive=WarpDrive(),
+        spore_drive=SporeDrive(branch=spore_drive, active=spore_drive is not None),
+    )
+
     try:
-        space_ship = Discovery(
-            warp_drive=WarpDrive(),
-            spore_drive=SporeDrive(branch=spore_drive, active=spore_drive is not None),
-        )
-        space_ship.complete_mission(identifier=mission_identifier)
+        for mission in missions:
+            complete_mission(space_ship=space_ship, mission=mission)
     except BurnhamError as err:
         click.echo(f"Error: {err}", err=True)
         sys.exit(1)

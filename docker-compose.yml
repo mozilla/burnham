@@ -4,19 +4,6 @@ services:
     image: platform
     build: fake-data-platform
     container_name: platform
-  # tests:
-  #   image: tests
-  #   build: .
-  #   container_name: tests
-  #   depends_on:
-  #     - platform
-  #   links:
-  #     - platform
-  #   command: >
-  #     -v
-  #     -s
-  #     --platform http://platform:5000
-  #     --run-id 11111111-aaaa-bbbb-cccc-123455555555
   cli1:
     image: burnham
     build: application
@@ -32,7 +19,9 @@ services:
       BURNHAM_TEST_RUN: "11111111-aaaa-bbbb-cccc-123455555555"
       BURNHAM_TEST_NAME: "test_cli1"
       BURNHAM_SPORE_DRIVE: "tardigrade"
-      BURNHAM_MISSION: "MISSION E: ONE JUMP, ONE METRIC ERROR"
+    command: >
+      "MISSION G: FIVE WARPS, FOUR JUMPS"
+      "MISSION C: ONE JUMP"
   cli2:
     image: burnham
     build: application
@@ -48,4 +37,27 @@ services:
       BURNHAM_TEST_RUN: "11111111-aaaa-bbbb-cccc-123455555555"
       BURNHAM_TEST_NAME: "test_cli1"
       BURNHAM_SPORE_DRIVE: "tardigrade-dna"
-      BURNHAM_MISSION: "MISSION G: FIVE WARPS, FOUR JUMPS"
+    command: >
+      "MISSION A: ONE WARP"
+      "MISSION B: TWO WARPS"
+      "MISSION D: TWO JUMPS"
+      "MISSION E: ONE JUMP, ONE METRIC ERROR"
+      "MISSION F: TWO WARPS, ONE JUMP"
+      "MISSION G: FIVE WARPS, FOUR JUMPS"
+  cli3:
+    image: burnham
+    build: application
+    container_name: cli3
+    depends_on:
+      - platform
+    links:
+      - platform
+    environment:
+      BURNHAM_PLATFORM_URL: http://platform:5000
+      BURNHAM_VERBOSE: 1
+      BURNHAM_TELEMETRY: 1
+      BURNHAM_TEST_RUN: "11111111-aaaa-bbbb-cccc-123455555555"
+      BURNHAM_TEST_NAME: "test_cli1"
+    command: >
+      "MISSION A: ONE WARP"
+      "MISSION B: TWO WARPS"
