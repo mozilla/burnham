@@ -7,10 +7,9 @@ from __future__ import annotations
 from collections import defaultdict
 from typing import Any, Callable, ClassVar, Dict, Type
 
+from burnham.exceptions import ExperimentError
 from glean import Glean
 from wrapt import decorator
-
-from burnham.exceptions import ExperimentError
 
 
 class Active:
