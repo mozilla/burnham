@@ -32,13 +32,6 @@ class MissionParamType(click.ParamType):
 
 
 @click.command()
-@click.argument(
-    "missions",
-    envvar="BURNHAM_MISSIONS",
-    type=MissionParamType(),
-    nargs=-1,
-    required=True,
-)
 @click.version_option(
     __version__, "-V", "--version",
 )
@@ -92,14 +85,21 @@ class MissionParamType(click.ParamType):
     required=False,
     envvar="BURNHAM_SPORE_DRIVE",
 )
+@click.argument(
+    "missions",
+    envvar="BURNHAM_MISSIONS",
+    type=MissionParamType(),
+    nargs=-1,
+    required=True,
+)
 def burnham(
-    missions: Tuple[Mission],
     verbose: bool,
     test_run: str,
     test_name: str,
     telemetry: bool,
     platform: str,
     spore_drive: str,
+    missions: Tuple[Mission],
 ) -> None:
     """Travel through space and complete missions with the Discovery crew.
 
