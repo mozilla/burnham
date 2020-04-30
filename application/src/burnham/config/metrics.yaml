@@ -77,7 +77,7 @@ mission:
   status:
     type: string
     description: >
-      The current status of space ship.
+      The status of the current mission.
     lifetime:
       application
     send_in_pings:
