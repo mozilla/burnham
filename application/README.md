@@ -17,7 +17,7 @@ pip install burnham
 ## Usage
 
 ```text
-burnham [OPTIONS] MISSION_NAME
+burnham [OPTIONS] MISSIONS...
 ```
 
 ## Community
