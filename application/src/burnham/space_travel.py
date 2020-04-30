@@ -4,17 +4,25 @@
 
 from __future__ import annotations
 
+import logging
 from typing import ClassVar
 
 from burnham import metrics
+from burnham.exceptions import ExperimentError
 from burnham.experiments import Experiment
+
+logger = logging.getLogger(__name__)
 
 
 class WarpDrive:
     """Space-travel technology."""
 
     def __call__(self, coordinates: str) -> str:
-        metrics.test.burnham.space_travel["warp_drive"].add(1)
+        """Warp to the given coordinates."""
+
+        metrics.technology.space_travel["warp_drive"].add(1)
+        logger.debug("Warp to %s using space-travel technology", coordinates)
+
         return coordinates
 
 
@@ -24,7 +32,32 @@ class SporeDrive(Experiment):
     identifier: ClassVar[str] = "spore_drive"
 
     def __call__(self, coordinates: str) -> str:
-        metrics.test.burnham.space_travel["spore_drive"].add(1)
+        """Jump to the given coordinates."""
+
+        metrics.technology.space_travel["spore_drive"].add(1)
+        logger.debug(
+            "Jump to %s using experimental space-travel technology", coordinates
+        )
+
+        if coordinates == "Starbase 46":
+            # The error message will be set for the Glean status metric.
+            # This will produce a Glean validation error as the message
+            # exceeds the maximum length for Glean string metric types.
+            raise ExperimentError(
+                "INCOMPLETE NAVIGATION SEQUENCE "
+                "abcdabcdabcdabcdabcdabcd"
+                "123412341234123412341234"
+                "abcdabcdabcdabcdabcdabcd"
+                "123412341234123412341234"
+                "123412341234123412341234"
+                "123412341234123412341234"
+                "123412341234123412341234"
+                "abcdabcdabcdabcdabcdabcd"
+                "abcdabcdabcdabcdabcdabcd"
+                "abcdabcdabcdabcdabcdabcd"
+                "abcdabcdabcdabcdabcdabcd"
+            )
+
         return coordinates
 
 
@@ -43,12 +76,10 @@ class Discovery:
     def warp(self, coordinates: str) -> None:
         """Warp to the given coordinates using the WarpDrive."""
         self.position = self.warp_drive(coordinates)
-        metrics.test.burnham.position.set(self.position)
 
     def jump(self, coordinates: str) -> None:
         """Jump to the given coordinates using the SporeDrive.
 
-        This requires the SporeDrive Experiment to be added and active.
+        This requires the SporeDrive Experiment to be active.
         """
         self.position = self.spore_drive(coordinates)
-        metrics.test.burnham.position.set(self.position)

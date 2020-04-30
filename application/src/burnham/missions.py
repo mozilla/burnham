@@ -4,108 +4,134 @@
 
 from __future__ import annotations
 
-from typing import Dict, Type
+import logging
+from typing import Any, ClassVar, Dict, List
 
-from burnham import pings
+from typing_extensions import Protocol
+
+from burnham import metrics, pings
+from burnham.exceptions import BurnhamError
 from burnham.space_travel import Discovery
 
-
-class MissionBase:
-    """Base class that has a mapping from names to subclasses."""
-
-    missions: Dict[str, Type[MissionBase]] = {}
-
-    @classmethod
-    def __init_subclass__(cls: Type[MissionBase], name: str, **kwargs):
-        super().__init_subclass__()
-        cls.missions[name] = cls
-
-    @classmethod
-    def start(cls, space_ship: Discovery) -> None:
-        """Subclasses define objectives for the given space_ship."""
+logger = logging.getLogger(__name__)
 
 
-class OneWarp(MissionBase, name="one_warp"):
-    """Warp one time.
+class Mission(Protocol):
+    """Protocol for space_travel missions."""
 
-    This also submits one Glean ping.
-    """
+    identifier: ClassVar[str]
 
-    @classmethod
-    def start(cls, space_ship: Discovery) -> None:
-        space_ship.warp("abc")
+    def complete(self, space_ship: Discovery) -> None:
+        """Subclasses define and run a series of tasks for the space ship."""
+
+
+def complete_mission(*, space_ship: Discovery, mission: Mission) -> Any:
+    """Complete the mission with the given identifier."""
+    try:
+        logger.debug("Starting mission '%s'", mission.identifier)
+        metrics.mission.identifier.set(mission.identifier)
+        mission.complete(space_ship=space_ship)
+    except BurnhamError as err:
+        logger.debug("Error completing mission '%s': %s", mission.identifier, err)
+        # This will produce a Glean validation error for BurnhamError
+        # messages that exceed the maximum length for Glean string metric types.
+        metrics.mission.status.set(f"ERROR: {err}")
+    else:
+        logger.debug("Completed mission '%s'", mission.identifier)
+        metrics.mission.status.set("COMPLETED")
+    finally:
+        # Make sure we submit a discovery ping
+        logger.debug("Submitting ping for mission '%s'", mission.identifier)
         pings.discovery.submit()
 
 
-class OneJump(MissionBase, name="one_jump"):
-    """Jump one time.
+class MissionA:
+    """Warp one time."""
 
-    This also submits one Glean ping.
-    """
+    identifier: ClassVar[str] = "MISSION A: ONE WARP"
 
-    @classmethod
-    def start(cls, space_ship: Discovery) -> None:
+    def complete(self, space_ship: Discovery) -> None:
+        space_ship.warp("abcdefgh")
+
+
+class MissionB:
+    """Warp two times."""
+
+    identifier: ClassVar[str] = "MISSION B: TWO WARPS"
+
+    def complete(self, space_ship: Discovery) -> None:
+        space_ship.warp("26.2")
+        space_ship.warp("abc")
+
+
+class MissionC:
+    """Jump one time."""
+
+    identifier: ClassVar[str] = "MISSION C: ONE JUMP"
+
+    def complete(self, space_ship: Discovery) -> None:
         space_ship.jump("12345")
-        pings.discovery.submit()
 
 
-class OneJumpToUnknownDestination(MissionBase, name="one_jump_to_unknown_destination"):
-    """Jump one time to an unknown destination.
+class MissionD:
+    """Jump two times."""
 
-    This also submits one Glean ping containing a validation error.
-    """
+    identifier: ClassVar[str] = "MISSION D: TWO JUMPS"
 
-    @classmethod
-    def start(cls, space_ship: Discovery) -> None:
-        space_ship.jump(
-            "abcdabcdabcdabcdabcdabcd"
-            "123412341234123412341234"
-            "abcdabcdabcdabcdabcdabcd"
-            "123412341234123412341234"
-            "123412341234123412341234"
-            "123412341234123412341234"
-            "123412341234123412341234"
-            "abcdabcdabcdabcdabcdabcd"
-            "abcdabcdabcdabcdabcdabcd"
-            "abcdabcdabcdabcdabcdabcd"
-            "abcdabcdabcdabcdabcdabcd"
-        )
-        pings.discovery.submit()
+    def complete(self, space_ship: Discovery) -> None:
+        space_ship.jump("2016")
+        space_ship.jump("Berlin")
 
 
-class TwoWarpsAndOneJump(MissionBase, name="two_warps_and_one_jump"):
-    """Warp two times and jump one time.
+class MissionE:
+    """Jump one time to Starbase 46."""
 
-    This also submits two Glean pings.
-    """
+    identifier: ClassVar[str] = "MISSION E: ONE JUMP, ONE METRIC ERROR"
 
-    @classmethod
-    def start(cls, space_ship: Discovery) -> None:
+    def complete(self, space_ship: Discovery) -> None:
+        # This will produce a Glean validation error.
+        # Check out the SporeDrive class for more information.
+        space_ship.jump("Starbase 46")
+
+
+class MissionF:
+    """Warp two times and jump one time."""
+
+    identifier: ClassVar[str] = "MISSION F: TWO WARPS, ONE JUMP"
+
+    def complete(self, space_ship: Discovery) -> None:
         space_ship.warp("abc")
-        pings.discovery.submit()
         space_ship.warp("de")
         space_ship.jump("12345")
-        pings.discovery.submit()
 
 
-class FiveWarpsAndFourJumps(MissionBase, name="five_warps_and_four_jumps"):
-    """Warp five times and jump four times.
+class MissionG:
+    """Warp five times and jump four times."""
 
-    This also submits four Glean pings.
-    """
+    identifier: ClassVar[str] = "MISSION G: FIVE WARPS, FOUR JUMPS"
 
-    @classmethod
-    def start(cls, space_ship: Discovery) -> None:
+    def complete(self, space_ship: Discovery) -> None:
         space_ship.jump("1234")
         space_ship.warp("abcd")
         space_ship.warp("ab")
-        pings.discovery.submit()
-        space_ship.jump("starbase")
-        pings.discovery.submit()
+        space_ship.jump("8000")
         space_ship.jump("20")
         space_ship.jump("200")
-        space_ship.warp("starbase")
+        space_ship.warp("home")
         space_ship.warp("4000")
-        pings.discovery.submit()
         space_ship.warp("abc123")
-        pings.discovery.submit()
+
+
+missions: List[Mission] = [
+    MissionA(),
+    MissionB(),
+    MissionC(),
+    MissionD(),
+    MissionE(),
+    MissionF(),
+    MissionG(),
+]
+
+missions_by_identifier: Dict[str, Mission] = {
+    mission.identifier: mission for mission in missions
+}
