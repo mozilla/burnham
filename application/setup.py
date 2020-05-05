@@ -33,7 +33,7 @@ setuptools.setup(
     package_data={"burnham": ["config/*.yaml"]},
     zip_safe=False,
     python_requires=">=3.7",
-    install_requires=["click>=7.0", "glean-sdk>=27.1.0", "wrapt", "typing_extensions"],
+    install_requires=["click>=7.0", "glean-sdk>=29.0.0", "wrapt", "typing_extensions"],
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",
