@@ -19,10 +19,10 @@ setuptools.setup(
     maintainer="Raphael Pierzina",
     maintainer_email="raphael@hackebrot.de",
     license="MPL 2.0",
-    url="https://github.com/hackebrot/burnham",
+    url="https://github.com/mozilla/burnham",
     project_urls={
-        "Repository": "https://github.com/hackebrot/burnham",
-        "Issues": "https://github.com/hackebrot/burnham/issues",
+        "Repository": "https://github.com/mozilla/burnham",
+        "Issues": "https://github.com/mozilla/burnham/issues",
     },
     description="Application for end-to-end testing Mozilla's Glean telemetry. 👩‍🚀",
     long_description=read("README.md"),

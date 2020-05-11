@@ -39,7 +39,7 @@ Distributed under the terms of the [Mozilla Public License 2.0][license],
 [Glean]: https://mozilla.github.io/glean/book/index.html
 [PyPI]: https://pypi.org/project/burnham/
 [pip]: https://pypi.org/project/pip/
-[good first issue]: https://github.com/hackebrot/burnham/labels/good%20first%20issue
-[code of conduct]: https://github.com/hackebrot/burnham/blob/master/application/CODE_OF_CONDUCT.md
-[license]: https://github.com/hackebrot/burnham/blob/master/application/LICENSE
+[good first issue]: https://github.com/mozilla/burnham/labels/good%20first%20issue
+[code of conduct]: https://github.com/mozilla/burnham/blob/master/application/CODE_OF_CONDUCT.md
+[license]: https://github.com/mozilla/burnham/blob/master/application/LICENSE
 

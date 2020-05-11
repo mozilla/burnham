@@ -11,8 +11,8 @@ discovery:
     Custom ping sent by the burnham CLI app.
   include_client_id: true
   bugs:
-    - https://github.com/hackebrot/burnham/issues/5
+    - https://github.com/mozilla/burnham/issues/5
   data_reviews:
-    - https://github.com/hackebrot/burnham/issues/6
+    - https://github.com/mozilla/burnham/issues/6
   notification_emails:
     - raphael@mozilla.com
