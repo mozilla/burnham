@@ -4,7 +4,7 @@ Application for end-to-end testing [Mozilla's Glean telemetry][Glean]. 👩‍�
 
 ## Development status
 
-This project is under active development. Do not use it in production. ⚠️
+This project is under active development. Do not use it in production. 🚧
 
 ## Installation
 
