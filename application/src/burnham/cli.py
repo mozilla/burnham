@@ -61,15 +61,6 @@ class MissionParamType(click.ParamType):
     envvar="BURNHAM_TEST_NAME",
 )
 @click.option(
-    "-t",
-    "--telemetry",
-    help="Enable telemetry recording and submission",
-    type=bool,
-    default=False,
-    is_flag=True,
-    envvar="BURNHAM_TELEMETRY",
-)
-@click.option(
     "-p",
     "--platform",
     help="Data Platform URL",
@@ -85,6 +76,15 @@ class MissionParamType(click.ParamType):
     required=False,
     envvar="BURNHAM_SPORE_DRIVE",
 )
+@click.option(
+    "-t/-T",
+    "--enable-telemetry/--disable-telemetry",
+    help="Enable/Disable telemetry submission with Glean",
+    type=bool,
+    default=True,
+    is_flag=True,
+    envvar="BURNHAM_TELEMETRY",
+)
 @click.argument(
     "missions",
     envvar="BURNHAM_MISSIONS",
@@ -96,7 +96,7 @@ def burnham(
     verbose: bool,
     test_run: str,
     test_name: str,
-    telemetry: bool,
+    enable_telemetry: bool,
     platform: str,
     spore_drive: str,
     missions: Tuple[Mission],
@@ -115,7 +115,7 @@ def burnham(
     Glean.initialize(
         application_id=__title__,
         application_version=__version__,
-        upload_enabled=telemetry,
+        upload_enabled=enable_telemetry is True,
         configuration=Configuration(server_endpoint=platform, log_pings=verbose),
     )
 
