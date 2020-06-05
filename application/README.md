@@ -14,6 +14,8 @@ This project is under active development. Do not use it in production. 🚧
 pip install burnham
 ```
 
+Versions follow [Calendar Versioning][calver] using a `YY.MINOR.MICRO` scheme. 🗓
+
 ## Usage
 
 ```text
@@ -42,4 +44,4 @@ Distributed under the terms of the [Mozilla Public License 2.0][license],
 [good first issue]: https://github.com/mozilla/burnham/labels/good%20first%20issue
 [code of conduct]: https://github.com/mozilla/burnham/blob/master/application/CODE_OF_CONDUCT.md
 [license]: https://github.com/mozilla/burnham/blob/master/application/LICENSE
-
+[calver]: https://calver.org
