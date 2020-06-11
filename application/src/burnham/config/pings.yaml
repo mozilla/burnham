@@ -13,6 +13,6 @@ discovery:
   bugs:
     - https://github.com/mozilla/burnham/issues/5
   data_reviews:
-    - https://github.com/mozilla/burnham/issues/6
+    - https://bugzilla.mozilla.org/show_bug.cgi?id=1643412
   notification_emails:
     - raphael@mozilla.com
