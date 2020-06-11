@@ -1,5 +1,5 @@
 [bug]
-color = "ffeb95"
+color = "f78c6c"
 name = "bug"
 description = "Bugs and problems with burnham"
 
@@ -8,13 +8,18 @@ color = "c792ea"
 name = "code quality"
 description = "Tasks related to linting, coding style, type checks"
 
+["data platform"]
+color = "80a4c2"
+name = "data platform"
+description = "Tasks related to the Data Platform work"
+
 [dependencies]
 color = "c792ea"
 name = "dependencies"
 description = "Tasks related to managing dependencies"
 
 [discussion]
-color = "82aaff"
+color = "ffeb95"
 name = "discussion"
 description = "Issues for discussing ideas for features"
 
@@ -22,6 +27,11 @@ description = "Issues for discussing ideas for features"
 color = "ef5350"
 name = "do not merge"
 description = "Pull requests which must not be merged"
+
+[docker]
+color = "cdebf7"
+name = "docker"
+description = "Tasks related to building Docker images"
 
 [docs]
 color = "21c7a8"
