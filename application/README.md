@@ -42,6 +42,6 @@ Distributed under the terms of the [Mozilla Public License 2.0][license],
 [PyPI]: https://pypi.org/project/burnham/
 [pip]: https://pypi.org/project/pip/
 [good first issue]: https://github.com/mozilla/burnham/labels/good%20first%20issue
-[code of conduct]: https://github.com/mozilla/burnham/blob/master/application/CODE_OF_CONDUCT.md
-[license]: https://github.com/mozilla/burnham/blob/master/application/LICENSE
+[code of conduct]: https://github.com/mozilla/burnham/blob/main/application/CODE_OF_CONDUCT.md
+[license]: https://github.com/mozilla/burnham/blob/main/application/LICENSE
 [calver]: https://calver.org
