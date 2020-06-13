@@ -26,8 +26,11 @@ workflows:
   build:
     jobs:
     - run_checks:
+        name: "Run flake8"
         tox_env: "flake8"
     - run_checks:
+        name: "Run mypy"
         tox_env: "mypy"
     - run_checks:
+        name: "Run py37"
         tox_env: "py37"
