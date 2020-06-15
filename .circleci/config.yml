@@ -1,0 +1,32 @@
+version: 2.1
+
+jobs:
+  run_checks:
+    docker:
+      - image: python:3.7
+    working_directory: ~/burnham/application
+    parameters:
+      tox_env:
+        type: string
+    steps:
+      - checkout:
+          path: ~/burnham/
+      - run:
+          name: Install tox
+          command: |
+            python -m pip install --upgrade pip
+            python -m pip install tox
+      - run:
+          name: Run tox
+          command: |
+            tox -e << parameters.tox_env >>
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - run_checks:
+          name: Run checks << matrix.tox_env >>
+          matrix:
+            parameters:
+              tox_env: ["flake8", "mypy", "py37"]
