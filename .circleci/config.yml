@@ -35,7 +35,7 @@ workflows:
             parameters:
               tox_env: ["flake8", "mypy", "py37"]
       - gcp-gcr/build-and-push-image:
-        context: data-eng-airflow-gcr
+          context: data-eng-airflow-gcr
           path: application
           image: burnham
           requires:
