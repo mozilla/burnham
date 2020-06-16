@@ -35,11 +35,7 @@ workflows:
             parameters:
               tox_env: ["flake8", "mypy", "py37"]
       - gcp-gcr/build-and-push-image:
-          # This step relies on several environment variables provided to the
-          # build job via Circle CI configuration:
-          #   GCLOUD_SERVICE_KEY
-          #   GOOGLE_PROJECT_ID
-          #   GOOGLE_COMPUTE_ZONE
+        context: data-eng-airflow-gcr
           path: application
           image: burnham
           requires:
