@@ -44,4 +44,4 @@ workflows:
             - run_checks
           filters:
             branches:
-              only: set-up-ci-for-docker-image
+              only: main
