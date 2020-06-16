@@ -1,5 +1,9 @@
 version: 2.1
 
+# See https://circleci.com/orbs/registry/orb/circleci/gcp-gcr
+orbs:
+  gcp-gcr: circleci/gcp-gcr@0.6.1
+
 jobs:
   run_checks:
     docker:
@@ -30,3 +34,14 @@ workflows:
           matrix:
             parameters:
               tox_env: ["flake8", "mypy", "py37"]
+      - gcp-gcr/build-and-push-image:
+          name: Build and push image
+          context: data-eng-airflow-gcr
+          path: application
+          dockerfile: application/Dockerfile
+          image: burnham
+          requires:
+            - run_checks
+          filters:
+            branches:
+              only: main
