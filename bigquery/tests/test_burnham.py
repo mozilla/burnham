@@ -4,7 +4,7 @@
 
 from typing import Any, List
 
-from fake_client import Client
+from google.cloud.bigquery import Client
 
 
 def test_burnham(bq_client: Client, sql: str, rows: List[Any]):

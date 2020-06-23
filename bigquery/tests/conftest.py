@@ -7,18 +7,27 @@ from dataclasses import dataclass
 from typing import Any, List
 
 import pytest
-
-from fake_client import Client
+from google.cloud.bigquery import Client
 
 
 def pytest_addoption(parser):
     """Define custom CLI options."""
-    glean_group = parser.getgroup("burnham")
-    glean_group.addoption(
+    burnham_group = parser.getgroup("burnham")
+    burnham_group.addoption(
         "--run",
         action="store",
         dest="run",
         help="JSON encoded test run information",
+        metavar="TEST_RUN_INFORMATION",
+        type=str,
+        required=True,
+    )
+    burnham_group.addoption(
+        "--project",
+        action="store",
+        dest="project",
+        help="Big Query project ID",
+        metavar="PROJECT_ID",
         type=str,
         required=True,
     )
@@ -43,20 +52,39 @@ class Run:
 
 def pytest_configure(config):
     """Load test run information from custom CLI options."""
-    run = json.loads(config.option.run)
 
-    config.run = Run(
-        identifier=run["identifier"],
-        tests=[Scenario(**scenario) for scenario in run["tests"]],
-    )
+    # We expect test run information in the format:
+    # {
+    #   "identifier": "RUN ID",
+    #   "tests": [
+    #     {
+    #       "name": "test_labeled_counter",
+    #       "sql": "SQL",
+    #       "rows": [[...], [...]],
+    #     {
+    #       "name": "test_metric_error",
+    #       "sql": "SQL",
+    #       "rows": [[...], [...]],
+    #     }
+    #   ]
+    # }
+
+    if config.option.run is not None:
+        run = json.loads(config.option.run)
+
+        config.burnham_run = Run(
+            identifier=run["identifier"],
+            tests=[Scenario(**scenario) for scenario in run["tests"]],
+        )
 
 
 def pytest_generate_tests(metafunc):
     """Generate tests from test run information."""
+
     ids = []
     argvalues = []
 
-    for scenario in metafunc.config.run.tests:
+    for scenario in metafunc.config.burnham_run.tests:
         ids.append(scenario.name)
         argvalues.append([scenario.sql, scenario.rows])
 
@@ -64,8 +92,6 @@ def pytest_generate_tests(metafunc):
 
 
 @pytest.fixture(name="bq_client", scope="session")
-def fixture_bq_client() -> Client:
+def fixture_bq_client(request) -> Client:
     """Return a Big Query client."""
-
-    # TODO: This needs to be replaced by a GCP Big Query Client
-    return Client()
+    return Client(project=request.config.option.project)
