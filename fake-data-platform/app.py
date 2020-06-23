@@ -2,10 +2,11 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import typing
-import flask
+import gzip
 import logging
+import typing
 
+import flask
 
 app = flask.Flask(__name__)
 app.logger.setLevel(logging.DEBUG)
@@ -23,7 +24,12 @@ def glean_ping(
 ) -> typing.Any:
     """Endpoint for submitting glean pings."""
 
-    app.logger.debug(flask.request.data)
+    ping_data = flask.request.data
+
+    if flask.request.content_encoding == "gzip":
+        ping_data = gzip.decompress(ping_data)
+
+    app.logger.debug(ping_data)
 
     return flask.jsonify(
         {
