@@ -1,0 +1,71 @@
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+import json
+from dataclasses import dataclass
+from typing import Any, List
+
+import pytest
+
+from fake_client import Client
+
+
+def pytest_addoption(parser):
+    """Define custom CLI options."""
+    glean_group = parser.getgroup("burnham")
+    glean_group.addoption(
+        "--run",
+        action="store",
+        dest="run",
+        help="JSON encoded test run information",
+        type=str,
+        required=True,
+    )
+
+
+@dataclass(frozen=True)
+class Scenario:
+    """Class that holds information about a specific test scenario."""
+
+    name: str
+    sql: str
+    rows: List[List[Any]]
+
+
+@dataclass(frozen=True)
+class Run:
+    """Class test runs with an ID and list of test scenarios."""
+
+    identifier: str
+    tests: List[Scenario]
+
+
+def pytest_configure(config):
+    """Load test run information from custom CLI options."""
+    run = json.loads(config.option.run)
+
+    config.run = Run(
+        identifier=run["identifier"],
+        tests=[Scenario(**scenario) for scenario in run["tests"]],
+    )
+
+
+def pytest_generate_tests(metafunc):
+    """Generate tests from test run information."""
+    ids = []
+    argvalues = []
+
+    for scenario in metafunc.config.run.tests:
+        ids.append(scenario.name)
+        argvalues.append([scenario.sql, scenario.rows])
+
+    metafunc.parametrize(["sql", "rows"], argvalues, ids=ids)
+
+
+@pytest.fixture(name="bq_client", scope="session")
+def fixture_bq_client() -> Client:
+    """Return a Big Query client."""
+
+    # TODO: This needs to be replaced by a GCP Big Query Client
+    return Client()
