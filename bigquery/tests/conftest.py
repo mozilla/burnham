@@ -53,22 +53,6 @@ class Run:
 def pytest_configure(config):
     """Load test run information from custom CLI options."""
 
-    # We expect test run information in the format:
-    # {
-    #   "identifier": "RUN ID",
-    #   "tests": [
-    #     {
-    #       "name": "test_labeled_counter",
-    #       "sql": "SQL",
-    #       "rows": [[...], [...]],
-    #     {
-    #       "name": "test_metric_error",
-    #       "sql": "SQL",
-    #       "rows": [[...], [...]],
-    #     }
-    #   ]
-    # }
-
     if config.option.run is not None:
         run = json.loads(config.option.run)
 
