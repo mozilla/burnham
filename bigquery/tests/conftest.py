@@ -38,7 +38,7 @@ class Scenario:
     """Class that holds information about a specific test scenario."""
 
     name: str
-    sql: str
+    query: str
     rows: List[List[Any]]
 
 
@@ -70,9 +70,9 @@ def pytest_generate_tests(metafunc):
 
     for scenario in metafunc.config.burnham_run.tests:
         ids.append(scenario.name)
-        argvalues.append([scenario.sql, scenario.rows])
+        argvalues.append([scenario.query, scenario.rows])
 
-    metafunc.parametrize(["sql", "rows"], argvalues, ids=ids)
+    metafunc.parametrize(["query", "rows"], argvalues, ids=ids)
 
 
 @pytest.fixture(name="bq_client", scope="session")
