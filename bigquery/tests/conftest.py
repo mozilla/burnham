@@ -39,7 +39,7 @@ class Scenario:
 
     name: str
     query: str
-    rows: List[List[Any]]
+    want: List[List[Any]]
 
 
 @dataclass(frozen=True)
@@ -70,9 +70,9 @@ def pytest_generate_tests(metafunc):
 
     for scenario in metafunc.config.burnham_run.tests:
         ids.append(scenario.name)
-        argvalues.append([scenario.query, scenario.rows])
+        argvalues.append([scenario.query, scenario.want])
 
-    metafunc.parametrize(["query", "rows"], argvalues, ids=ids)
+    metafunc.parametrize(["query", "want"], argvalues, ids=ids)
 
 
 @pytest.fixture(name="bq_client", scope="session")

@@ -7,10 +7,10 @@ from typing import Any, List
 from google.cloud.bigquery import Client
 
 
-def test_burnham(bq_client: Client, query: str, rows: List[Any]):
+def test_burnham(bq_client: Client, query: str, want: List[Any]):
     """Test that the Glean telemetry in BigQuery matches what we expect."""
 
-    bq_job = bq_client.query(query)
-    bq_rows = [row for row in bq_job.result()]
+    job = bq_client.query(query)
+    got = [row for row in job.result()]
 
-    assert bq_rows == rows
+    assert got == want

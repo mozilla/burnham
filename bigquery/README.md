@@ -17,7 +17,7 @@ The framework accepts JSON-encoded test run information:
     {
       "name": "test_labeled_counter",
       "query": "<SQL>",
-      "rows": [
+      "want": [
         [
           1234,
           5678
@@ -31,7 +31,7 @@ The framework accepts JSON-encoded test run information:
     {
       "name": "test_metric_error",
       "query": "<SQL>",
-      "rows": [
+      "want": [
         [
           "hello",
           "world"
