@@ -26,7 +26,7 @@ def pytest_addoption(parser):
         "--project",
         action="store",
         dest="project",
-        help="Big Query project ID",
+        help="BigQuery project ID",
         metavar="PROJECT_ID",
         type=str,
         required=True,
@@ -77,5 +77,5 @@ def pytest_generate_tests(metafunc):
 
 @pytest.fixture(name="bq_client", scope="session")
 def fixture_bq_client(request) -> Client:
-    """Return a Big Query client."""
+    """Return a BigQuery client."""
     return Client(project=request.config.option.project)

@@ -1,6 +1,6 @@
 # burnham-bigquery
 
-Test framework for verifying [Glean telemetry][Glean] in Big Query. 👩‍🔬
+Test framework for verifying [Glean telemetry][Glean] in BigQuery. 👩‍🔬
 
 ## Development status
 
