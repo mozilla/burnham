@@ -15,9 +15,9 @@ def pytest_addoption(parser):
     """Define custom CLI options."""
     burnham_group = parser.getgroup("burnham")
     burnham_group.addoption(
-        "--run",
+        "--run-id",
         action="store",
-        dest="run",
+        dest="run_id",
         help="ID of the current test run",
         metavar="RUN_ID",
         type=str,
@@ -70,7 +70,7 @@ def pytest_configure(config):
         scenarios = json.loads(utf_decoded)
 
         config.burnham_run = Run(
-            identifier=config.option.run,
+            identifier=config.option.run_id,
             scenarios=[Scenario(**scenario) for scenario in scenarios],
         )
 
