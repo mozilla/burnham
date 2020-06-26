@@ -33,9 +33,9 @@ def pytest_addoption(parser):
         required=True,
     )
     burnham_group.addoption(
-        "--project",
+        "--project-id",
         action="store",
-        dest="project",
+        dest="project_id",
         help="BigQuery project ID",
         metavar="PROJECT_ID",
         type=str,
@@ -91,4 +91,4 @@ def pytest_generate_tests(metafunc):
 @pytest.fixture(name="bq_client", scope="session")
 def fixture_bq_client(request) -> Client:
     """Return a BigQuery client."""
-    return Client(project=request.config.option.project)
+    return Client(project=request.config.option.project_id)
