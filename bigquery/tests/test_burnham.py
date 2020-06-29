@@ -15,5 +15,5 @@ def test_burnham(
 ):
     """Test that the Glean telemetry in BigQuery matches what we expect."""
     query_job = client.query(query, job_config=query_job_config)
-    got = [row for row in query_job.result()]
+    got = [dict(row.items()) for row in query_job.result()]
     assert got == want
