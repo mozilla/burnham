@@ -8,7 +8,7 @@ from dataclasses import dataclass
 from typing import Any, List
 
 import pytest
-from google.cloud.bigquery import Client
+from google.cloud import bigquery
 
 
 def pytest_addoption(parser):
@@ -81,14 +81,24 @@ def pytest_generate_tests(metafunc):
     ids = []
     argvalues = []
 
+    query_job_config = bigquery.QueryJobConfig(
+        # The SQL query is expected to contain a @burnham_test_run parameter
+        # and the value is passed in for the --run-id CLI option.
+        query_parameters=[
+            bigquery.ScalarQueryParameter(
+                "burnham_test_run", "STRING", metafunc.config.burnham_run.identifier
+            ),
+        ]
+    )
+
     for scenario in metafunc.config.burnham_run.scenarios:
         ids.append(scenario.name)
-        argvalues.append([scenario.query, scenario.want])
+        argvalues.append([query_job_config, scenario.query, scenario.want])
 
-    metafunc.parametrize(["query", "want"], argvalues, ids=ids)
+    metafunc.parametrize(["query_job_config", "query", "want"], argvalues, ids=ids)
 
 
-@pytest.fixture(name="bq_client", scope="session")
-def fixture_bq_client(request) -> Client:
+@pytest.fixture(name="client", scope="session")
+def fixture_client(request) -> bigquery.Client:
     """Return a BigQuery client."""
-    return Client(project=request.config.option.project_id)
+    return bigquery.Client(project=request.config.option.project_id)
