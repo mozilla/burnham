@@ -81,18 +81,17 @@ def pytest_generate_tests(metafunc):
     ids = []
     argvalues = []
 
-    query_job_config = bigquery.QueryJobConfig(
-        # The SQL query is expected to contain a @burnham_test_run parameter
-        # and the value is passed in for the --run-id CLI option.
-        query_parameters=[
-            bigquery.ScalarQueryParameter(
-                "burnham_test_run", "STRING", metafunc.config.burnham_run.identifier
-            ),
-        ]
-    )
-
     for scenario in metafunc.config.burnham_run.scenarios:
         ids.append(scenario.name)
+        query_job_config = bigquery.QueryJobConfig(
+            # The SQL query is expected to contain a @burnham_test_run parameter
+            # and the value is passed in for the --run-id CLI option.
+            query_parameters=[
+                bigquery.ScalarQueryParameter(
+                    "burnham_test_run", "STRING", metafunc.config.burnham_run.identifier
+                ),
+            ]
+        )
         argvalues.append([query_job_config, scenario.query, scenario.want])
 
     metafunc.parametrize(["query_job_config", "query", "want"], argvalues, ids=ids)
