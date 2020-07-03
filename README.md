@@ -8,14 +8,14 @@ made available in BigQuery. 👩‍🚀📈🤖
 
 ## Overview
 
-### glean-sdk
+### Glean SDK
 
 For Mozilla, getting reliable data from our products is critical to inform
 our decision making. Glean is our new product analytics & telemetry solution
 that provides a consistent experience and behavior across all of our
 products.
 
-Find out more in our [Firefox Data Documentation][firefox_data]. 📝
+Find out more in our [Data Documentation][firefox_data]. 📝
 
 ### burnham
 
