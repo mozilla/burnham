@@ -15,12 +15,12 @@ our decision making. Glean is our new product analytics & telemetry solution
 that provides a consistent experience and behavior across all of our
 products.
 
-Find out more in our [Data Documentation][firefox_data]. 📝
+Find out more in our [Data Documentation][data_documentation]. 📝
 
 ### burnham
 
-We have developed a new command-line application based on the [Glean Python
-SDK][glean_python_sdk] for producing test data for this end-to-end test
+We have developed a new command-line application based on the [Glean SDK
+Python bindings][glean_sdk] for producing test data for this end-to-end test
 suite. The burnham application submits Glean pings to the Data Platform which
 validates and stores these pings in BigQuery tables. The burnham application
 was built to be used in test automation by Mozilla engineers and is **not**
@@ -71,7 +71,7 @@ read the burnham [Code of Conduct][code_of_conduct].
 [code_of_conduct]: /CODE_OF_CONDUCT.md
 [bigquery]: /bigquery
 [airflow_dag]: https://github.com/mozilla/telemetry-airflow/blob/master/dags/burnham.py
-[firefox_data]: https://docs.telemetry.mozilla.org/concepts/glean/glean.html
+[data_documentation]: https://docs.telemetry.mozilla.org/concepts/glean/glean.html
 [pytest]: https://pypi.org/project/pytest/
-[glean_python_sdk]: https://pypi.org/project/glean-sdk/
+[glean_sdk]: https://pypi.org/project/glean-sdk/
 [telemetry-airflow]: https://github.com/mozilla/telemetry-airflow
