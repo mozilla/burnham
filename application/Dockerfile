@@ -7,7 +7,7 @@ WORKDIR /usr/src/burnham
 
 RUN python -m pip install --upgrade --no-cache-dir \
     pip \
-    setuptools \
+    setuptools>=49.1.0 \
     wheel
 RUN python -m pip wheel -w /wheels .
 
