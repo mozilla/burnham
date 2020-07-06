@@ -19,11 +19,9 @@ Find out more in our [Data Documentation][data_documentation]. 📝
 ### burnham
 
 We have developed a command-line application based on the [Glean SDK Python
-bindings][glean_sdk] for producing test data for this end-to-end test suite.
-The burnham application submits Glean pings to the Data Platform which
-validates and stores these pings in BigQuery tables. The burnham application
-was built to be used in test automation by Mozilla engineers and is **not**
-meant to be used by users.
+bindings][glean_sdk] for producing test data as part of the automated
+end-to-end test suite. The burnham application submits Glean pings to the
+Data Platform which validates and stores these pings in BigQuery tables.
 
 You can find the code for the burnham application in the [application
 directory][application]. 👩‍🚀
