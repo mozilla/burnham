@@ -1,27 +1,26 @@
 # burnham
 
-The burnham project is a new end-to-end test suite that aims to automatically
+The burnham project is an end-to-end test suite that aims to automatically
 verify that Glean-based products correctly measure, collect, and submit
 non-personal information to the GCP-based Data Platform and that the received
-telemetry data is then correctly processed, stored to the respective tables and
-made available in BigQuery. 👩‍🚀📈🤖
+telemetry data is then correctly processed, stored to the respective tables
+and made available in BigQuery. 👩‍🚀📈🤖
 
 ## Overview
 
 ### Glean SDK
 
 For Mozilla, getting reliable data from our products is critical to inform
-our decision making. Glean is our new product analytics & telemetry solution
-that provides a consistent experience and behavior across all of our
-products.
+our decision making. Glean is a product analytics & telemetry solution that
+provides a consistent experience and behavior across all of our products.
 
 Find out more in our [Data Documentation][data_documentation]. 📝
 
 ### burnham
 
-We have developed a new command-line application based on the [Glean SDK
-Python bindings][glean_sdk] for producing test data for this end-to-end test
-suite. The burnham application submits Glean pings to the Data Platform which
+We have developed a command-line application based on the [Glean SDK Python
+bindings][glean_sdk] for producing test data for this end-to-end test suite.
+The burnham application submits Glean pings to the Data Platform which
 validates and stores these pings in BigQuery tables. The burnham application
 was built to be used in test automation by Mozilla engineers and is **not**
 meant to be used by users.
@@ -31,9 +30,9 @@ directory][application]. 👩‍🚀
 
 ### burnham-bigquery
 
-We also developed a new test suite based on the [pytest][pytest] framework
-that dynamically generates tests. Each test runs a specific query on BigQuery
-to verify a certain test scenario.
+We also developed a test suite based on the [pytest][pytest] framework that
+dynamically generates tests. Each test runs a specific query on BigQuery to
+verify a certain test scenario.
 
 The test suite code is located in the [bigquery][bigquery] directory. 📊
 
