@@ -64,6 +64,14 @@ Platform team and the Ecosystem Test Engineering team.
 This repository is governed by Mozilla's code of conduct and etiquette. Please
 read the burnham [Code of Conduct][code_of_conduct].
 
+## Project theme
+
+The project theme is inspired by Michael Burnham, the fictional protagonist
+on the web television series Star Trek: Discovery portrayed by Sonequa
+Martin-Green. Burnham is a science specialist on the Discovery. She and her
+crew do research on spore drive technology and complete missions in outer
+space. 👩‍🚀
+
 [application]: /application
 [code_of_conduct]: /CODE_OF_CONDUCT.md
 [bigquery]: /bigquery
