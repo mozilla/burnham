@@ -6,6 +6,9 @@ non-personal information to the GCP-based Data Platform and that the received
 telemetry data is then correctly processed, stored to the respective tables
 and made available in BigQuery. 👩‍🚀📈🤖
 
+Blog post about the proof of concept:
+https://raphael.codes/blog/automated-end-to-end-tests-for-glean/
+
 ## Overview
 
 ### Glean SDK
