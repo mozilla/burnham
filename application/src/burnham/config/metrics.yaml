@@ -3,7 +3,6 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 ---
-
 $schema: moz://mozilla.org/schemas/glean/metrics/1-0-0
 
 test:
@@ -11,10 +10,11 @@ test:
     type: uuid
     description: >
       ID of the current test run.
-    lifetime:
-      application
+    lifetime: application
     send_in_pings:
       - discovery
+      - space-ship-ready
+      - starbase46
     bugs:
       - https://github.com/mozilla/burnham/issues/5
     data_reviews:
@@ -27,10 +27,11 @@ test:
     type: string
     description: >
       Name of the current test.
-    lifetime:
-      application
+    lifetime: application
     send_in_pings:
       - discovery
+      - space-ship-ready
+      - starbase46
     bugs:
       - https://github.com/mozilla/burnham/issues/5
     data_reviews:
@@ -62,8 +63,7 @@ mission:
     type: string
     description: >
       The identifier of the current mission.
-    lifetime:
-      application
+    lifetime: application
     send_in_pings:
       - discovery
     bugs:
@@ -78,8 +78,7 @@ mission:
     type: string
     description: >
       The status of the current mission.
-    lifetime:
-      application
+    lifetime: application
     send_in_pings:
       - discovery
     bugs:

@@ -3,7 +3,6 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 ---
-
 $schema: moz://mozilla.org/schemas/glean/pings/1-0-0
 
 discovery:
@@ -12,6 +11,28 @@ discovery:
   include_client_id: true
   bugs:
     - https://github.com/mozilla/burnham/issues/5
+  data_reviews:
+    - https://bugzilla.mozilla.org/show_bug.cgi?id=1643412
+  notification_emails:
+    - raphael@mozilla.com
+
+space-ship-ready:
+  description: >
+    Custom ping for testing kebab-case ping names.
+  include_client_id: true
+  bugs:
+    - https://github.com/mozilla/burnham/issues/8
+  data_reviews:
+    - https://bugzilla.mozilla.org/show_bug.cgi?id=1643412
+  notification_emails:
+    - raphael@mozilla.com
+
+starbase46:
+  description: >
+    Custom ping for testing ping names that contain numbers.
+  include_client_id: true
+  bugs:
+    - https://github.com/mozilla/burnham/issues/8
   data_reviews:
     - https://bugzilla.mozilla.org/show_bug.cgi?id=1643412
   notification_emails:

@@ -12,7 +12,7 @@ import click
 from glean import Glean
 from glean.config import Configuration
 
-from burnham import __title__, __version__, metrics
+from burnham import __title__, __version__, metrics, pings
 from burnham.exceptions import BurnhamError
 from burnham.missions import Mission, complete_mission, missions_by_identifier
 from burnham.space_travel import Discovery, SporeDrive, WarpDrive
@@ -129,6 +129,7 @@ def burnham(
         warp_drive=WarpDrive(),
         spore_drive=SporeDrive(branch=spore_drive, active=spore_drive is not None),
     )
+    pings.space_ship_ready.submit()
 
     try:
         for mission in missions:
