@@ -10,6 +10,8 @@ from typing import Any, List
 import pytest
 from google.cloud import bigquery
 
+pytest_plugins: List[str] = ["plugins.store_results_in_bigquery"]
+
 
 def pytest_addoption(parser):
     """Define custom CLI options."""
