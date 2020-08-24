@@ -97,15 +97,6 @@ def write_rows(client: bigquery.Client, table: str, rows: List[TableRow]) -> Non
 
     job_config = bigquery.LoadJobConfig(
         write_disposition=bigquery.job.WriteDisposition.WRITE_APPEND,
-        schema=[
-            bigquery.SchemaField("submission_timestamp", "DATE", mode="NULLABLE"),
-            bigquery.SchemaField("test_run", "STRING", mode="NULLABLE"),
-            bigquery.SchemaField("test_name", "STRING", mode="NULLABLE"),
-            bigquery.SchemaField("test_outcome", "STRING", mode="NULLABLE"),
-            bigquery.SchemaField("test_duration_millis", "INTEGER", mode="NULLABLE"),
-            bigquery.SchemaField("test_log_url", "STRING", mode="NULLABLE"),
-            bigquery.SchemaField("test_report", "STRING", mode="NULLABLE"),
-        ],
     )
 
     load_job = client.load_table_from_json(
