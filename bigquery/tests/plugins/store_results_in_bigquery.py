@@ -6,6 +6,7 @@
 from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
 from enum import Enum
+from json import dumps
 from typing import Any, Dict, List
 
 from google.cloud import bigquery
@@ -100,7 +101,7 @@ def write_rows(client: bigquery.Client, table: str, rows: List[TableRow]) -> Non
     )
 
     load_job = client.load_table_from_json(
-        json_rows=[asdict(row) for row in rows],
+        json_rows=[dumps(asdict(row), ensure_ascii=False) for row in rows],
         destination=table,
         job_config=job_config,
     )
