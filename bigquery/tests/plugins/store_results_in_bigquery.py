@@ -99,6 +99,7 @@ def write_rows(client: bigquery.Client, table: str, rows: List[TableRow]) -> Non
 
     job_config = bigquery.LoadJobConfig(
         write_disposition=bigquery.job.WriteDisposition.WRITE_APPEND,
+        source_format=bigquery.SourceFormat.NEWLINE_DELIMITED_JSON,
     )
 
     data_str = "\n".join(json.dumps(asdict(row), ensure_ascii=False) for row in rows)
