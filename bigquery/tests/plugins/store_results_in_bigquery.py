@@ -3,10 +3,11 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 
+import io
+import json
 from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
 from enum import Enum
-from json import dumps
 from typing import Any, Dict, List
 
 from google.cloud import bigquery
@@ -100,10 +101,11 @@ def write_rows(client: bigquery.Client, table: str, rows: List[TableRow]) -> Non
         write_disposition=bigquery.job.WriteDisposition.WRITE_APPEND,
     )
 
-    load_job = client.load_table_from_json(
-        json_rows=[dumps(asdict(row), ensure_ascii=False) for row in rows],
-        destination=table,
-        job_config=job_config,
+    data_str = "\n".join(json.dumps(asdict(row), ensure_ascii=False) for row in rows)
+    data_file = io.BytesIO(data_str.encode(encoding="utf-8"))
+
+    load_job = client.load_table_from_file(
+        data_file, destination=table, job_config=job_config,
     )
 
     # Wait for load job to complete; raises an exception if the job failed.
