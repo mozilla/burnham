@@ -116,7 +116,7 @@ def burnham(
         application_id=__title__,
         application_version=__version__,
         upload_enabled=enable_telemetry is True,
-        configuration=Configuration(server_endpoint=platform, log_pings=verbose),
+        configuration=Configuration(server_endpoint=platform),
     )
 
     metrics.test.run.set(test_run)
