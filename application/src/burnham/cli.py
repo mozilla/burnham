@@ -4,16 +4,18 @@
 
 import logging
 import sys
+from pathlib import Path
+from tempfile import TemporaryDirectory
 from typing import Tuple
 
 import click
+from glean import Glean
+from glean.config import Configuration
 
 from burnham import __title__, __version__, metrics
 from burnham.exceptions import BurnhamError
 from burnham.missions import Mission, complete_mission, missions_by_identifier
 from burnham.space_travel import Discovery, SporeDrive, WarpDrive
-from glean import Glean
-from glean.config import Configuration
 
 
 class MissionParamType(click.ParamType):
@@ -116,6 +118,7 @@ def burnham(
         application_id=__title__,
         application_version=__version__,
         upload_enabled=enable_telemetry is True,
+        data_dir=Path(TemporaryDirectory().name),
         configuration=Configuration(server_endpoint=platform),
     )
 
