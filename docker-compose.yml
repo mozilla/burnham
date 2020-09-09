@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 services:
   platform:
     image: platform
@@ -19,6 +19,7 @@ services:
       BURNHAM_TEST_RUN: "11111111-aaaa-bbbb-cccc-123455555555"
       BURNHAM_TEST_NAME: "test_cli1"
       BURNHAM_SPORE_DRIVE: "tardigrade"
+      GLEAN_LOG_PINGS: "true"
     command: >
       "MISSION G: FIVE WARPS, FOUR JUMPS"
       "MISSION C: ONE JUMP"
@@ -37,6 +38,7 @@ services:
       BURNHAM_TEST_RUN: "11111111-aaaa-bbbb-cccc-123455555555"
       BURNHAM_TEST_NAME: "test_cli1"
       BURNHAM_SPORE_DRIVE: "tardigrade-dna"
+      GLEAN_LOG_PINGS: "true"
     command: >
       "MISSION A: ONE WARP"
       "MISSION B: TWO WARPS"
@@ -58,6 +60,7 @@ services:
       BURNHAM_TELEMETRY: 1
       BURNHAM_TEST_RUN: "11111111-aaaa-bbbb-cccc-123455555555"
       BURNHAM_TEST_NAME: "test_cli1"
+      GLEAN_LOG_PINGS: "true"
     command: >
       "MISSION A: ONE WARP"
       "MISSION B: TWO WARPS"
