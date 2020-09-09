@@ -89,6 +89,9 @@ class MissionE:
     identifier: ClassVar[str] = "MISSION E: ONE JUMP, ONE METRIC ERROR"
 
     def complete(self, space_ship: Discovery) -> None:
+        """Complete the mission after submitting a custom ping."""
+        pings.starbase46.submit()
+
         # This will produce a Glean validation error.
         # Check out the SporeDrive class for more information.
         space_ship.jump("Starbase 46")
