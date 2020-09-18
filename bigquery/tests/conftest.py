@@ -26,6 +26,15 @@ def pytest_addoption(parser):
         required=True,
     )
     burnham_group.addoption(
+        "--execution-date",
+        action="store",
+        dest="execution_date",
+        help="Airflow execution date of the current test run in ISO format",
+        metavar="TIMESTAMP",
+        type=str,
+        required=True,
+    )
+    burnham_group.addoption(
         "--scenarios",
         action="store",
         dest="scenarios",
@@ -56,9 +65,10 @@ class Scenario:
 
 @dataclass(frozen=True)
 class Run:
-    """Class test runs with an ID and list of test scenarios."""
+    """Class that holds information about the current test run."""
 
     identifier: str
+    execution_date: str
     scenarios: List[Scenario]
 
 
@@ -73,6 +83,7 @@ def pytest_configure(config):
 
         config.burnham_run = Run(
             identifier=config.option.run_id,
+            execution_date=config.option.execution_date,
             scenarios=[Scenario(**scenario) for scenario in scenarios],
         )
 
@@ -86,11 +97,16 @@ def pytest_generate_tests(metafunc):
     for scenario in metafunc.config.burnham_run.scenarios:
         ids.append(scenario.name)
         query_job_config = bigquery.QueryJobConfig(
-            # The SQL query is expected to contain a @burnham_test_run parameter
-            # and the value is passed in for the --run-id CLI option.
+            # The SQL query is expected to contain the following parameters
+            # which get passed in as CLI options to burnham-bigquery
             query_parameters=[
                 bigquery.ScalarQueryParameter(
                     "burnham_test_run", "STRING", metafunc.config.burnham_run.identifier
+                ),
+                bigquery.ScalarQueryParameter(
+                    "burnham_execution_date",
+                    "STRING",
+                    metafunc.config.burnham_run.execution_date,
                 ),
             ]
         )
