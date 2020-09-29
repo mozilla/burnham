@@ -5,6 +5,7 @@
 import base64
 import json
 from dataclasses import dataclass
+from datetime import datetime
 from typing import Any, List
 
 import pytest
@@ -23,6 +24,15 @@ def pytest_addoption(parser):
         help="ID of the current test run",
         metavar="RUN_ID",
         type=str,
+        required=True,
+    )
+    burnham_group.addoption(
+        "--start-timestamp",
+        action="store",
+        dest="start_timestamp",
+        help="Start timestamp of the Airflow DAG run in ISO format",
+        metavar="TIMESTAMP",
+        type=datetime.fromisoformat,
         required=True,
     )
     burnham_group.addoption(
@@ -56,9 +66,10 @@ class Scenario:
 
 @dataclass(frozen=True)
 class Run:
-    """Class test runs with an ID and list of test scenarios."""
+    """Class that holds information about the current test run."""
 
     identifier: str
+    start_timestamp: datetime
     scenarios: List[Scenario]
 
 
@@ -73,6 +84,7 @@ def pytest_configure(config):
 
         config.burnham_run = Run(
             identifier=config.option.run_id,
+            start_timestamp=config.option.start_timestamp,
             scenarios=[Scenario(**scenario) for scenario in scenarios],
         )
 
@@ -86,11 +98,16 @@ def pytest_generate_tests(metafunc):
     for scenario in metafunc.config.burnham_run.scenarios:
         ids.append(scenario.name)
         query_job_config = bigquery.QueryJobConfig(
-            # The SQL query is expected to contain a @burnham_test_run parameter
-            # and the value is passed in for the --run-id CLI option.
+            # The SQL query is expected to contain the following parameters
+            # which get passed in as CLI options to burnham-bigquery
             query_parameters=[
                 bigquery.ScalarQueryParameter(
                     "burnham_test_run", "STRING", metafunc.config.burnham_run.identifier
+                ),
+                bigquery.ScalarQueryParameter(
+                    "burnham_start_timestamp",
+                    "TIMESTAMP",
+                    metafunc.config.burnham_run.start_timestamp,
                 ),
             ]
         )
