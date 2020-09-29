@@ -5,6 +5,7 @@
 import base64
 import json
 from dataclasses import dataclass
+from datetime import datetime
 from typing import Any, List
 
 import pytest
@@ -31,7 +32,7 @@ def pytest_addoption(parser):
         dest="start_timestamp",
         help="Start timestamp of the Airflow DAG run in ISO format",
         metavar="TIMESTAMP",
-        type=str,
+        type=datetime.fromisoformat,
         required=True,
     )
     burnham_group.addoption(
@@ -68,7 +69,7 @@ class Run:
     """Class that holds information about the current test run."""
 
     identifier: str
-    start_timestamp: str
+    start_timestamp: datetime
     scenarios: List[Scenario]
 
 
@@ -105,7 +106,7 @@ def pytest_generate_tests(metafunc):
                 ),
                 bigquery.ScalarQueryParameter(
                     "burnham_start_timestamp",
-                    "STRING",
+                    "TIMESTAMP",
                     metafunc.config.burnham_run.start_timestamp,
                 ),
             ]
