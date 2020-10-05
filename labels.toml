@@ -1,20 +1,45 @@
+[CircleCI]
+color = "ecc48d"
+name = "CircleCI"
+description = "Tasks related to managing CircleCI"
+
+[Dependabot]
+color = "ecc48d"
+name = "Dependabot"
+description = "Tasks related to managing Dependabot"
+
+[GitHub]
+color = "ecc48d"
+name = "GitHub"
+description = "Tasks related to managing GitHub"
+
+[application]
+color = "c792ea"
+name = "application"
+description = "Tasks related to the application component"
+
+[bigquery]
+color = "c792ea"
+name = "bigquery"
+description = "Tasks related to the bigquery component"
+
 [bug]
 color = "f78c6c"
 name = "bug"
 description = "Bugs and problems with burnham"
 
+[capability]
+color = "82aaff"
+name = "capability"
+description = "New capability for burnham or burnham-bigquery"
+
 ["code quality"]
-color = "c792ea"
+color = "21c7a8"
 name = "code quality"
 description = "Tasks related to linting, coding style, type checks"
 
-["data platform"]
-color = "80a4c2"
-name = "data platform"
-description = "Tasks related to the Data Platform work"
-
 [dependencies]
-color = "c792ea"
+color = "21c7a8"
 name = "dependencies"
 description = "Tasks related to managing dependencies"
 
@@ -38,10 +63,15 @@ color = "21c7a8"
 name = "docs"
 description = "Tasks to write and update documentation"
 
-[feature]
-color = "82aaff"
-name = "feature"
-description = "New feature for burnham"
+[fake-data-platform]
+color = "c792ea"
+name = "fake-data-platform"
+description = "Tasks related to the fake-data-platform component"
+
+[glean-sdk]
+color = "80a4c2"
+name = "glean-sdk"
+description = "Issues and pull-requests related to the Glean SDK"
 
 ["good first issue"]
 color = "7fdbca"
@@ -49,7 +79,7 @@ name = "good first issue"
 description = "Good tasks for newcomers to burnham"
 
 [misc]
-color = "ecc48d"
+color = "d6deeb"
 name = "misc"
 description = "Tasks that don't fit any of the other categories"
 
@@ -57,3 +87,13 @@ description = "Tasks that don't fit any of the other categories"
 color = "d6deeb"
 name = "project"
 description = "Tasks related to managing this project"
+
+[telemetry-airflow]
+color = "80a4c2"
+name = "telemetry-airflow"
+description = "Issues and pull-requests related to Airflow"
+
+["test scenario"]
+color = "82aaff"
+name = "test scenario"
+description = "New end-to-end test scenario"
