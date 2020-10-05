@@ -9,7 +9,7 @@ RUN python -m pip install --upgrade --no-cache-dir \
     pip>=20.1.1 \
     setuptools>=49.1.0 \
     wheel>=0.34.2
-RUN python -m pip wheel -w /wheels .
+RUN python -m pip wheel -w /wheels -r requirements.txt
 
 FROM python:3.7-slim-buster
 
