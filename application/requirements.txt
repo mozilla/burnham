@@ -4,14 +4,14 @@ attrs==20.2.0 \
     --hash=sha256:fce7fc47dfc976152e82d53ff92fa0407700c21acd20886a13777a0d20e655dc
 cffi==1.14.3 \
     --hash=sha256:22399ff4870fb4c7ef19fff6eeb20a8bbf15571913c181c78cb361024d574579
-click==7.0 \
-    --hash=sha256:2335065e6395b9e67ca716de5f7526736bfa6ceead690adf616d925bdc622b13
+click==7.1.2 \
+    --hash=sha256:dacca89f4bfadd5de3d7489b7c8a566eee0d3676333fbb50030263894c38c0dc
 diskcache==5.0.3 \
     --hash=sha256:ff4dc1e69d599dca8c23cecfcf69b23bfecae9c04aca424b4f02c511bb1438c2
-glean-parser==1.28.3 \
-    --hash=sha256:25916753edeb2c573fa6b5ea892c5e14f927154e2b0c5a0183e3a1fe57826de9
-glean-sdk==32.3.1 \
-     --hash=sha256:56bc302c89cc74d91bad269e33903425be6765d9da47cb202d122ff1fe28df46
+glean-parser==1.28.6 \
+    --hash=sha256:af5ccfabd517d742f3f83e99ff41f30dda74d92e49539884464e9e0650d6e94d
+glean-sdk==33.0.4 \
+    --hash=sha256:3c744c79d4fe59e652c74e52b1e343ef4436f1d367ecb34ff45ef893e6ab74d7
 importlib-metadata==2.0.0 \
     --hash=sha256:cefa1a2f919b866c5beb7c9f7b0ebb4061f30a8a9bf16d609b000e2dfaceb9c3
 jinja2==2.11.2 \
