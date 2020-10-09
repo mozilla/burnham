@@ -22,6 +22,6 @@ RUN python -m venv venv
 RUN . venv/bin/activate
 
 RUN python -m pip install --upgrade pip
-RUN python -m pip install /tmp/wheels/*.whl
+RUN python -m pip install --no-index --find-links=/tmp/wheels/ burnham
 
 ENTRYPOINT [ "burnham" ]
