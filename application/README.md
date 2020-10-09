@@ -4,7 +4,8 @@ Application for end-to-end testing [Mozilla's Glean telemetry][Glean]. 👩‍�
 
 ## Development status
 
-This project is under active development. 🚧
+We successfully completed the proof of concept and are now running burnham in
+production. 🚀
 
 ## Installation
 

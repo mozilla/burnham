@@ -1,10 +1,10 @@
-# burnham
+# burnham 👩‍🚀📈🤖
 
 The burnham project is an end-to-end test suite that aims to automatically
 verify that Glean-based products correctly measure, collect, and submit
 non-personal information to the GCP-based Data Platform and that the received
 telemetry data is then correctly processed, stored to the respective tables
-and made available in BigQuery. 👩‍🚀📈🤖
+and made available in BigQuery.
 
 Blog post about the proof of concept:
 https://raphael.codes/blog/automated-end-to-end-tests-for-glean/
@@ -51,7 +51,9 @@ Please see the [burnham DAG][airflow_dag] for more information. 📋
 
 ## Development status
 
-This project is under active development. 🚧
+We successfully completed the proof of concept and are now running burnham
+and burnham-bigquery in production. We are now actively working on developing
+additional test scenarios. 🚀
 
 ## Requirements
 
