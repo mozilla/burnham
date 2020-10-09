@@ -33,7 +33,9 @@ directory][application]. 👩‍🚀
 
 We also developed a test suite based on the [pytest][pytest] framework that
 dynamically generates tests. Each test runs a specific query on BigQuery to
-verify a certain test scenario.
+verify a certain test scenario. After the test session finished, we then
+store the results in a designated BigQuery table with ID
+`burnham_derived.test_results_v1`.
 
 The test suite code is located in the [bigquery][bigquery] directory. 📊
 
