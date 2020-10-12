@@ -42,11 +42,11 @@ The test suite code is located in the [bigquery][bigquery] directory. 📊
 ### telemetry-airflow
 
 We build and push Docker images for both burnham and burnham-bigquery on CI
-for pushes to the main branch of this repository. The end-to-end test suite
+for pushes to the `main` branch of this repository. The end-to-end test suite
 is configured as a DAG on [telemetry-airflow][telemetry-airflow] on the Data
 Platform and scheduled to run daily. It runs several instances of a burnham
-Docker container to produce Glean telemetry, uses an Airflow sensor to wait
-for the data to be available in the burnham live tables, and then runs
+Docker container to produce Glean telemetry, uses Airflow sensors to wait for
+the data to be available in the various burnham live tables, and then runs
 burnham-bigquery to verify the results.
 
 Please see the [burnham DAG][airflow_dag] for more information. 📋
