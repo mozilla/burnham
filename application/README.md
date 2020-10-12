@@ -35,7 +35,11 @@ wish to replace the glean-sdk wheel installed in the burnham Docker image
 with a custom distribution.
 
 Bump the glean-sdk version identifier before you build a wheel distribution
-and then update the [Dockerfile][dockerfile] to copy the wheel into the
+for the glean-sdk and optionally every dependency of glean-sdk that you added
+or upgraded. Be sure to check the `requirements.txt` file for the pinned
+dependencies. 📦
+
+Then update the [Dockerfile][dockerfile] to copy the local wheels into the
 Docker image:
 
 ```text
@@ -46,14 +50,15 @@ COPY glean_sdk-31.2.1-cp36-abi3-manylinux1_x86_64.whl /tmp/wheels/
 ```
 
 Then make sure that the version requirement for the Python bindings for the
-Glean SDK in [burnham setup.py][setup.py] matches your custom distribution.
+Glean SDK and its dependencies in the [burnham setup.py][setup.py] matches
+your custom distributions.
 
 ```text
 install_requires=["click>=7.0", "glean-sdk==31.2.1", "wrapt", "typing_extensions"]
 ```
 
 When you build the burnham Docker image you should now see a message that pip
-installed your custom glean-sdk wheel in the log.
+installed your custom wheels in the log.
 
 ## Community
 
