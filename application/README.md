@@ -17,6 +17,11 @@ pip install burnham
 
 Versions follow [Calendar Versioning][calver] using a `YY.MINOR.MICRO` scheme. 🗓
 
+🚧 Note that we currently don't automatically upload new releases to PyPI
+(see [GitHub issue #57][issue57]).
+
+[issue57]: https://github.com/mozilla/burnham/issues/57
+
 ## Usage
 
 ```text
