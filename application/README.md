@@ -58,7 +58,7 @@ install_requires=["click>=7.0", "glean-sdk==31.2.1", "wrapt", "typing_extensions
 ```
 
 When you build the burnham Docker image you should now see a message that pip
-installed your custom wheels in the log.
+has installed your custom wheels in the log.
 
 ## Community
 
