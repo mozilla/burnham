@@ -1,10 +1,10 @@
-# burnham
+# burnham 👩‍🚀📈🤖
 
 The burnham project is an end-to-end test suite that aims to automatically
 verify that Glean-based products correctly measure, collect, and submit
 non-personal information to the GCP-based Data Platform and that the received
 telemetry data is then correctly processed, stored to the respective tables
-and made available in BigQuery. 👩‍🚀📈🤖
+and made available in BigQuery.
 
 Blog post about the proof of concept:
 https://raphael.codes/blog/automated-end-to-end-tests-for-glean/
@@ -33,25 +33,38 @@ directory][application]. 👩‍🚀
 
 We also developed a test suite based on the [pytest][pytest] framework that
 dynamically generates tests. Each test runs a specific query on BigQuery to
-verify a certain test scenario.
+verify a certain test scenario. After the test session finished, we then
+store the results in a designated BigQuery table with ID
+`burnham_derived.test_results_v1`.
 
 The test suite code is located in the [bigquery][bigquery] directory. 📊
 
 ### telemetry-airflow
 
 We build and push Docker images for both burnham and burnham-bigquery on CI
-for pushes to the main branch of this repository. The end-to-end test suite
+for pushes to the `main` branch of this repository. The end-to-end test suite
 is configured as a DAG on [telemetry-airflow][telemetry-airflow] on the Data
 Platform and scheduled to run daily. It runs several instances of a burnham
-Docker container to produce Glean telemetry, uses an Airflow sensor to wait
-for the data to be available in the burnham live tables, and then runs
+Docker container to produce Glean telemetry, uses Airflow sensors to wait for
+the data to be available in the various burnham live tables, and then runs
 burnham-bigquery to verify the results.
 
 Please see the [burnham DAG][airflow_dag] for more information. 📋
 
+### Redash
+
+We created two scheduled queries that read the results from the
+`burnham_derived.test_results_v1` table from the past 4 days. The queries run
+daily at 02:00 UTC after telemetry-airflow ran the burnham DAG.
+
+Mozilla employees can find this information in the [burnham
+dashboard][redash].
+
 ## Development status
 
-This project is under active development. 🚧
+We successfully completed the proof of concept and are now running burnham
+and burnham-bigquery in production. We are now actively working on developing
+additional test scenarios. 🚀
 
 ## Requirements
 
@@ -84,3 +97,4 @@ perfect fit for this project. 👩‍🚀
 [pytest]: https://pypi.org/project/pytest/
 [glean_sdk]: https://pypi.org/project/glean-sdk/
 [telemetry-airflow]: https://github.com/mozilla/telemetry-airflow
+[redash]: https://sql.telemetry.mozilla.org/dashboard/burnham
