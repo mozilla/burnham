@@ -2,8 +2,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import typing
 import shlex
+import typing
 
 import pytest
 from click.testing import CliRunner
@@ -24,8 +24,16 @@ def fixture_run_cli() -> typing.Callable:
     return run
 
 
-def test_cli(run_cli: typing.Callable) -> None:
-    """Test the burnham CLI."""
-
+def test_help(run_cli: typing.Callable) -> None:
+    """Test for the help option."""
     result = run_cli("--help")
     assert result.exit_code == 0
+    assert "Usage: burnham" in result.output
+
+
+@pytest.mark.parametrize("option", ["-V", "--version"])
+def test_version(run_cli: typing.Callable, option: str) -> None:
+    """Test for the version options."""
+    result = run_cli(option)
+    assert result.exit_code == 0
+    assert "burnham, version" in result.output
