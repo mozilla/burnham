@@ -12,3 +12,4 @@ source = ["src", ".tox/*/site-packages"]
 
 [tool.coverage.report]
 fail_under = 50
+show_missing = true
