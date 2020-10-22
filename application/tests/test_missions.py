@@ -4,11 +4,13 @@
 
 from __future__ import annotations
 
+import logging
+
 import pytest
 
 from burnham import metrics
 from burnham.exceptions import ExperimentError
-from burnham.missions import missions_by_identifier
+from burnham.missions import complete_mission, missions_by_identifier
 from burnham.space_travel import Discovery, SporeDrive, WarpDrive
 
 
@@ -94,3 +96,33 @@ def test_mission_g(space_ship: Discovery) -> None:
     }
 
     assert values == {"warp_drive": 5, "spore_drive": 4}
+
+
+def test_complete_mission_status_completed(caplog, space_ship: Discovery):
+    """Test that complete_mission emit the expected logs for a completed mission."""
+    caplog.set_level(logging.DEBUG)
+
+    identifier = "MISSION G: FIVE WARPS, FOUR JUMPS"
+    mission = missions_by_identifier[identifier]
+
+    complete_mission(space_ship=space_ship, mission=mission)
+
+    assert f"Starting mission '{identifier}'" in caplog.text
+    assert f"Completed mission '{identifier}'" in caplog.text
+    assert f"Error completing mission '{identifier}':" not in caplog.text
+    assert f"Submitting ping for mission '{identifier}'" in caplog.text
+
+
+def test_complete_mission_status_error(caplog, space_ship: Discovery):
+    """Test that complete_mission emit the expected logs for a error mission."""
+    caplog.set_level(logging.DEBUG)
+
+    identifier = "MISSION E: ONE JUMP, ONE METRIC ERROR"
+    mission = missions_by_identifier[identifier]
+
+    complete_mission(space_ship=space_ship, mission=mission)
+
+    assert f"Starting mission '{identifier}'" in caplog.text
+    assert f"Completed mission '{identifier}'" not in caplog.text
+    assert f"Error completing mission '{identifier}':" in caplog.text
+    assert f"Submitting ping for mission '{identifier}'" in caplog.text
