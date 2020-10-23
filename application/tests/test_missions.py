@@ -98,7 +98,9 @@ def test_mission_g(space_ship: Discovery) -> None:
     assert values == {"warp_drive": 5, "spore_drive": 4}
 
 
-def test_complete_mission_status_completed(caplog, space_ship: Discovery):
+def test_complete_mission_status_completed(
+    caplog, monkeypatch_discovery, space_ship: Discovery
+):
     """Test that complete_mission emit the expected logs for a completed mission."""
     caplog.set_level(logging.DEBUG)
 
@@ -111,9 +113,12 @@ def test_complete_mission_status_completed(caplog, space_ship: Discovery):
     assert f"Completed mission '{identifier}'" in caplog.text
     assert f"Error completing mission '{identifier}':" not in caplog.text
     assert f"Submitting ping for mission '{identifier}'" in caplog.text
+    assert monkeypatch_discovery.counter == 1
 
 
-def test_complete_mission_status_error(caplog, space_ship: Discovery):
+def test_complete_mission_status_error(
+    caplog, monkeypatch_discovery, space_ship: Discovery,
+):
     """Test that complete_mission emit the expected logs for a error mission."""
     caplog.set_level(logging.DEBUG)
 
@@ -126,3 +131,4 @@ def test_complete_mission_status_error(caplog, space_ship: Discovery):
     assert f"Completed mission '{identifier}'" not in caplog.text
     assert f"Error completing mission '{identifier}':" in caplog.text
     assert f"Submitting ping for mission '{identifier}'" in caplog.text
+    assert monkeypatch_discovery.counter == 1
