@@ -101,7 +101,7 @@ def test_mission_g(space_ship: Discovery) -> None:
 def test_complete_mission_status_completed(
     caplog, monkeypatch_discovery, space_ship: Discovery
 ):
-    """Test that complete_mission emit the expected logs for a completed mission."""
+    """Test that complete_mission emits the expected logs for a completed mission."""
     caplog.set_level(logging.DEBUG)
 
     identifier = "MISSION G: FIVE WARPS, FOUR JUMPS"
@@ -119,7 +119,7 @@ def test_complete_mission_status_completed(
 def test_complete_mission_status_error(
     caplog, monkeypatch_discovery, space_ship: Discovery,
 ):
-    """Test that complete_mission emit the expected logs for a error mission."""
+    """Test that complete_mission emits the expected logs for an error mission."""
     caplog.set_level(logging.DEBUG)
 
     identifier = "MISSION E: ONE JUMP, ONE METRIC ERROR"
