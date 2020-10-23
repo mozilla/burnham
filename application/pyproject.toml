@@ -11,5 +11,5 @@ source = ["burnham"]
 source = ["src", ".tox/*/site-packages"]
 
 [tool.coverage.report]
-fail_under = 50
+fail_under = 95
 show_missing = true
