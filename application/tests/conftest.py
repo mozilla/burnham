@@ -21,7 +21,6 @@ class SpyPing:
 @pytest.fixture(name="initialize_glean", scope="session", autouse=True)
 def fixture_initialize_glean(tmp_path_factory):
     """Initialize the Glean SDK for the test session."""
-
     Glean.initialize(
         application_id="burnham_testing",
         application_version="0.1.0",
@@ -33,7 +32,6 @@ def fixture_initialize_glean(tmp_path_factory):
 @pytest.fixture(name="reset_glean", scope="function", autouse=True)
 def fixture_reset_glean():
     """Reset the Glean SDK before every test."""
-
     testing.reset_glean(application_id="burnham_testing", application_version="0.1.0")
 
 

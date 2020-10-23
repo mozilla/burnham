@@ -62,6 +62,7 @@ def test_cli(
         "MISSION E: ONE JUMP, ONE METRIC ERROR",
         "MISSION G: FIVE WARPS, FOUR JUMPS",
     ]
+
     result = run_cli(
         f"--test-run={uuid.uuid4()}",
         "--test-name=test_cli",
