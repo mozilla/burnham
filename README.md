@@ -1,5 +1,7 @@
 # burnham 👩‍🚀📈🤖
 
+**Test GitHub status checks**
+
 The burnham project is an end-to-end test suite that aims to automatically
 verify that Glean-based products correctly measure, collect, and submit
 non-personal information to the GCP-based Data Platform and that the received
