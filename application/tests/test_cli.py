@@ -83,7 +83,9 @@ def test_cli(
 
 
 def test_cli_verbosity(
-    monkeypatch_space_ship_ready, monkeypatch_discovery, run_cli: Callable,
+    monkeypatch_space_ship_ready,
+    monkeypatch_discovery,
+    run_cli: Callable,
 ) -> None:
     """Test for verbosity in the CLI app."""
 

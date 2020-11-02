@@ -109,7 +109,9 @@ def test_complete_mission_status_completed(
 
 
 def test_complete_mission_status_error(
-    caplog, monkeypatch_discovery, space_ship: Discovery,
+    caplog,
+    monkeypatch_discovery,
+    space_ship: Discovery,
 ):
     """Test that complete_mission emits the expected logs for an error mission."""
     caplog.set_level(logging.DEBUG)
