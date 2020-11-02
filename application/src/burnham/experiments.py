@@ -47,7 +47,9 @@ def check_active(wrapped_method: Callable, experiment: Experiment, args, kwargs)
     """Check that the experiment is active when calling methods on it."""
 
     if experiment.active is False:
-        raise ExperimentError(f"Experiment '{experiment.identifier}' is inactive.")
+        raise ExperimentError(
+            f"Experiment '{experiment.identifier}:{experiment.branch}' is inactive."
+        )
 
     return wrapped_method(*args, **kwargs)
 
