@@ -27,7 +27,9 @@ class MissionParamType(click.ParamType):
 
         if identifier not in missions_by_identifier:
             raise click.BadParameter(
-                f'Unknown mission identifier "{identifier}"', ctx, param,
+                f'Unknown mission identifier "{identifier}"',
+                ctx,
+                param,
             )
 
         return missions_by_identifier[identifier]
@@ -35,7 +37,9 @@ class MissionParamType(click.ParamType):
 
 @click.command()
 @click.version_option(
-    __version__, "-V", "--version",
+    __version__,
+    "-V",
+    "--version",
 )
 @click.option(
     "-v",

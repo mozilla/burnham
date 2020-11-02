@@ -29,7 +29,8 @@ class Active:
 
         if value is True and self.values[experiment] is False:
             Glean.set_experiment_active(
-                experiment_id=experiment.identifier, branch=experiment.branch,
+                experiment_id=experiment.identifier,
+                branch=experiment.branch,
             )
 
         if value is False and self.values[experiment] is True:
