@@ -7,6 +7,7 @@ from __future__ import annotations
 import logging
 from typing import Any, ClassVar, Dict, List
 
+from glean import Glean
 from typing_extensions import Protocol
 
 from burnham import metrics, pings
@@ -125,6 +126,24 @@ class MissionG:
         space_ship.warp("abc123")
 
 
+class MissionH:
+    """Disable Glean SDK metrics collection and ping upload."""
+
+    identifier: ClassVar[str] = "MISSION H: DISABLE GLEAN UPLOAD"
+
+    def complete(self, space_ship: Discovery) -> None:
+        Glean.set_upload_enabled(False)
+
+
+class MissionI:
+    """Enable Glean SDK metrics collection and ping upload."""
+
+    identifier: ClassVar[str] = "MISSION I: ENABLE GLEAN UPLOAD"
+
+    def complete(self, space_ship: Discovery) -> None:
+        Glean.set_upload_enabled(True)
+
+
 missions: List[Mission] = [
     MissionA(),
     MissionB(),
@@ -133,6 +152,8 @@ missions: List[Mission] = [
     MissionE(),
     MissionF(),
     MissionG(),
+    MissionH(),
+    MissionI(),
 ]
 
 missions_by_identifier: Dict[str, Mission] = {
