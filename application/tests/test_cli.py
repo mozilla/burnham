@@ -131,3 +131,35 @@ def test_cli_unknown_mission_identifier(
 
     assert monkeypatch_space_ship_ready.counter == 0
     assert monkeypatch_discovery.counter == 0
+
+
+def test_cli_restore_test_run_and_test_name(
+    monkeypatch_space_ship_ready,
+    monkeypatch_discovery,
+    monkeypatch_set_upload_enabled,
+    run_cli: Callable,
+) -> None:
+    """Test that the CLI restores the values for test.run and test.name after
+    completing MISSION I.
+    """
+
+    missions = [
+        "MISSION G: FIVE WARPS, FOUR JUMPS",
+        "MISSION H: DISABLE GLEAN UPLOAD",
+        "MISSION D: TWO JUMPS",
+        "MISSION I: ENABLE GLEAN UPLOAD",
+    ]
+
+    result = run_cli(
+        f"--test-run={uuid.uuid4()}",
+        "--test-name=test_cli",
+        "--platform=localhost:0",
+        "--spore-drive=tardigrade-dna",
+        *missions,
+    )
+
+    assert result.exit_code == 0
+
+    assert monkeypatch_set_upload_enabled.values == [False, True]
+    assert monkeypatch_space_ship_ready.counter == 1
+    assert monkeypatch_discovery.counter == 4

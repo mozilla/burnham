@@ -90,6 +90,22 @@ def test_mission_g(space_ship: Discovery) -> None:
     assert values == {"warp_drive": 5, "spore_drive": 4}
 
 
+def test_mission_h(monkeypatch_set_upload_enabled, space_ship: Discovery) -> None:
+    """Test for Mission H."""
+    mission = missions_by_identifier["MISSION H: DISABLE GLEAN UPLOAD"]
+
+    mission.complete(space_ship=space_ship)
+    assert monkeypatch_set_upload_enabled.values == [False]
+
+
+def test_mission_i(monkeypatch_set_upload_enabled, space_ship: Discovery) -> None:
+    """Test for Mission I."""
+    mission = missions_by_identifier["MISSION I: ENABLE GLEAN UPLOAD"]
+
+    mission.complete(space_ship=space_ship)
+    assert monkeypatch_set_upload_enabled.values == [True]
+
+
 def test_complete_mission_status_completed(
     caplog, monkeypatch_discovery, space_ship: Discovery
 ):

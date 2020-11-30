@@ -4,6 +4,8 @@
 
 from __future__ import annotations
 
+from typing import List
+
 import pytest
 from glean import Glean, testing
 
@@ -57,3 +59,21 @@ def fixture_monkeypatch_space_ship_ready(monkeypatch) -> SpyPing:
     space_ship_ready = SpyPing()
     monkeypatch.setattr("burnham.cli.pings.space_ship_ready", space_ship_ready)
     return space_ship_ready
+
+
+class SpyUploadEnabled:
+    """Spy class for Glean's upload enabled."""
+
+    def __init__(self) -> None:
+        self.values: List[bool] = []
+
+    def __call__(self, enabled: bool) -> None:
+        self.values.append(enabled)
+
+
+@pytest.fixture(name="monkeypatch_set_upload_enabled")
+def fixture_monkeypatch_set_upload_enabled(monkeypatch) -> SpyUploadEnabled:
+    """Monkeypatch the space_ship_ready ping."""
+    spy = SpyUploadEnabled()
+    monkeypatch.setattr("burnham.missions.Glean.set_upload_enabled", spy)
+    return spy
