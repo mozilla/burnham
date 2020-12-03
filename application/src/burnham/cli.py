@@ -4,6 +4,7 @@
 
 import logging
 import sys
+import time
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from typing import Tuple
@@ -16,6 +17,8 @@ from burnham import __title__, __version__, metrics, pings
 from burnham.exceptions import BurnhamError
 from burnham.missions import Mission, complete_mission, missions_by_identifier
 from burnham.space_travel import Discovery, SporeDrive, WarpDrive
+
+logger = logging.getLogger(__name__)
 
 
 class MissionParamType(click.ParamType):
@@ -147,6 +150,9 @@ def burnham(
             if mission.identifier == "MISSION I: ENABLE GLEAN UPLOAD":
                 metrics.test.run.set(test_run)
                 metrics.test.name.set(test_name)
+
+            logger.info("All missions completed. Waiting for telemetry to be sent.")
+            time.sleep(5)
 
     except BurnhamError as err:
         click.echo(f"Error: {err}", err=True)
