@@ -60,6 +60,20 @@ install_requires=["click>=7.0", "glean-sdk==31.2.1", "wrapt", "typing_extensions
 When you build the burnham Docker image you should now see a message that pip
 has installed your custom wheels in the log.
 
+## Run burnham missions locally
+
+You can run the `fake-data-platform` and the burnham missions locally using
+`docker-compose`. Run the following command from the top-level directory:
+
+```text
+docker-compose up --build
+```
+
+This will launch the platform and run 3 additional containers running
+`burnham`. It will print logs from all containers to stdout, the log of
+`platform` should show the received pings. The `burnham` containers will exit
+automatically, you can stop the platform with Ctrl-C.
+
 ## Community
 
 Please check out the [good first issue][good first issue] label for tasks, that
