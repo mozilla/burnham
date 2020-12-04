@@ -151,8 +151,10 @@ def burnham(
                 metrics.test.run.set(test_run)
                 metrics.test.name.set(test_name)
 
-            logger.info("All missions completed. Waiting for telemetry to be sent.")
-            time.sleep(5)
+        secs = 5
+        logger.info("All missions completed.")
+        logger.info(f" Waiting {secs}s for telemetry to be sent.")
+        time.sleep(secs)
 
     except BurnhamError as err:
         click.echo(f"Error: {err}", err=True)
