@@ -5,6 +5,7 @@
 from __future__ import annotations
 
 import logging
+import time
 from typing import Any, ClassVar, Dict, List
 
 from glean import Glean
@@ -127,11 +128,19 @@ class MissionG:
 
 
 class MissionH:
-    """Disable Glean SDK metrics collection and ping upload."""
+    """Sleep for 5 seconds and then disable Glean SDK metrics collection and
+    ping upload.
+    """
 
     identifier: ClassVar[str] = "MISSION H: DISABLE GLEAN UPLOAD"
 
     def complete(self, space_ship: Discovery) -> None:
+        # Wait for 5 seconds to wait for the upload of pending pings to
+        # complete. This is required for testing the deletion-request ping
+        # functionality when we join the discovery table with the
+        # deletion-request table using the client ID to then verify that the
+        # deletion-request ping was submitted with the expected client ID.
+        time.sleep(5)
         Glean.set_upload_enabled(False)
 
 
