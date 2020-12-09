@@ -8,3 +8,4 @@ updates:
       - "Dependabot"
       - "dependencies"
       - "application"
+    open-pull-requests-limit: 10
