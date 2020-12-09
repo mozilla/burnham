@@ -4,3 +4,8 @@ updates:
     directory: "application/"
     schedule:
       interval: "daily"
+    labels:
+      - "Dependabot"
+      - "dependencies"
+      - "application"
+    open-pull-requests-limit: 10
