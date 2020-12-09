@@ -4,3 +4,7 @@ updates:
     directory: "application/"
     schedule:
       interval: "daily"
+    labels:
+      - "Dependabot"
+      - "dependencies"
+      - "application"
