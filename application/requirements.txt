@@ -63,12 +63,13 @@ glean-parser==1.29.0 \
     --hash=sha256:7cf1b02ef87fad57bf0f6b9711a98c1fd8f89c9df702245d16c09bf1b042a255 \
     --hash=sha256:df7436e164148594176ec55f7d7c3c5c944daca67c3cc30428514628625b214b \
     # via glean-sdk
-glean-sdk==34.1.0 \
-    --hash=sha256:080a1ea8d29441dcab78ded4218a9a6a5e84cb468fe9953c85e6d936c8a2168e \
-    --hash=sha256:ecad032709dfe6b0345cec2e95bbca49e1481afd867a1c5d45456accf6f5ad30 \
-    --hash=sha256:1240a490aae9bb3a668a22c35991d6be48f2ecf793fa8ef3b95336b537a8f7bd \
-    --hash=sha256:158ec9dbdbe889988adff2b4dbcfb54d47c7c33b6d36134f965f1f083c9816af \
-    --hash=sha256:eac5337a7dd91afed720eb14a689220ab394ac1a6fa870688175cb0228796a0e \
+glean-sdk==36.0.0 \
+    --hash=sha256:48401bb9bc2bb4b44b7897305007fa67e0bde044ac73309050d60d78a4ee2cca \
+    --hash=sha256:64b91f1ba273db500a2ced9a549ce5a95ccbeaf22fc9568d8d4fda6fe38a7e6c \
+    --hash=sha256:81ddbf2d471009b6a07f33ebca37aa4694a2dfa7c8362f4d6aa101b0293c6f12 \
+    --hash=sha256:325606a32442fb6956def031568904e3ad663db49c31992082645e4f57827e49 \
+    --hash=sha256:45aba5df378584aedf2890a1c918846f3f29f52ff63e9cb24d1bc5135edd8f4c \
+    --hash=sha256:8baf391b64445c8bb40f2a36e511a87653c60e481c0ac2a89521d9f4e9b66425 \
     # via burnham (setup.py)
 importlib-metadata==3.10.0 \
     --hash=sha256:d2d46ef77ffc85cbf7dac7e81dd663fde71c45326131bea8033b9bad42268ebe \
