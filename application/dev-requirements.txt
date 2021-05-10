@@ -79,9 +79,9 @@ coverage[toml]==5.5 \
     --hash=sha256:f0b278ce10936db1a37e6954e15a3730bea96a0997c26d7fee88e6c396c2086d \
     --hash=sha256:f11642dddbb0253cc8853254301b51390ba0081750a8ac03f20ea8103f0c56b6
     # via -r dev-requirements.in
-flake8==3.9.1 \
-    --hash=sha256:1aa8990be1e689d96c745c5682b687ea49f2e05a443aff1f8251092b0014e378 \
-    --hash=sha256:3b9f848952dddccf635be78098ca75010f073bfe14d2c6bda867154bea728d2a
+flake8==3.9.2 \
+    --hash=sha256:07528381786f2a6237b061f6e96610a4167b226cb926e2aa2b6b1d78057c576b \
+    --hash=sha256:bf8fd333346d844f616e8d47905ef3a3384edae6b4e9beb0c5101e25e3110907
     # via -r dev-requirements.in
 iniconfig==1.1.1 \
     --hash=sha256:011e24c64b7f47f6ebd835bb12a743f2fbe9a26d4cecaa7f53bc4f35ee9da8b3 \
