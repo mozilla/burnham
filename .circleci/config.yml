@@ -37,8 +37,7 @@ workflows:
       - gcp-gcr/build-and-push-image:
           name: Build and push burnham 📦
           context: data-eng-airflow-gcr
-          docker-context: application
-          dockerfile: application/Dockerfile
+          path: application
           image: burnham
           requires:
             - run_checks
@@ -48,8 +47,7 @@ workflows:
       - gcp-gcr/build-and-push-image:
           name: Build and push burnham-bigquery 📦
           context: data-eng-airflow-gcr
-          docker-context: bigquery
-          dockerfile: bigquery/Dockerfile
+          path: bigquery
           image: burnham-bigquery
           requires:
             - run_checks
