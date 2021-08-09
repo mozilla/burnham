@@ -2,7 +2,7 @@ version: 2.1
 
 # See https://circleci.com/orbs/registry/orb/circleci/gcp-gcr
 orbs:
-  gcp-gcr: circleci/gcp-gcr@0.6.1
+  gcp-gcr: circleci/gcp-gcr@0.13.0
 
 jobs:
   run_checks:
@@ -38,7 +38,7 @@ workflows:
           name: Build and push burnham 📦
           context: data-eng-airflow-gcr
           path: application
-          dockerfile: application/Dockerfile
+          docker-context: application
           image: burnham
           requires:
             - run_checks
@@ -49,7 +49,7 @@ workflows:
           name: Build and push burnham-bigquery 📦
           context: data-eng-airflow-gcr
           path: bigquery
-          dockerfile: bigquery/Dockerfile
+          docker-context: bigquery
           image: burnham-bigquery
           requires:
             - run_checks
