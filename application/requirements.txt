@@ -81,9 +81,9 @@ glean-sdk==40.0.0 \
     --hash=sha256:b2bd0eff7ff41f1a0f544a8a70c6e8ead9c34bd98c91633ab667aa16b8b770b0 \
     --hash=sha256:d8d839aada49964735ebd1fcc64b1af9e200299b5304e22815dd26490a968d95
     # via burnham (setup.py)
-importlib-metadata==4.6.4 \
-    --hash=sha256:ed5157fef23a4bc4594615a0dd8eba94b2bb36bf2a343fa3d8bb2fa0a62a99d5 \
-    --hash=sha256:7b30a78db2922d78a6f47fb30683156a14f3c6aa5cc23f77cc8967e9ab2d002f
+importlib-metadata==4.7.0 \
+    --hash=sha256:a69df6d94f8ac09cd46fdf79a955c153164b312442f7594a3eeeec46f230fe2b \
+    --hash=sha256:1be82867064622fe56c7046bb5280063949f56c0abcdfc3cd33875efd4fc5498
     # via jsonschema
 jinja2==2.11.3 \
     --hash=sha256:03e47ad063331dd6a3f04a43eddca8a966a26ba0c5b7207a9a9e4e08f1b29419 \
