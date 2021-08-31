@@ -83,14 +83,6 @@ flake8==3.9.2 \
     --hash=sha256:07528381786f2a6237b061f6e96610a4167b226cb926e2aa2b6b1d78057c576b \
     --hash=sha256:bf8fd333346d844f616e8d47905ef3a3384edae6b4e9beb0c5101e25e3110907
     # via -r dev-requirements.in
-importlib-metadata==4.6.4 \
-    --hash=sha256:7b30a78db2922d78a6f47fb30683156a14f3c6aa5cc23f77cc8967e9ab2d002f \
-    --hash=sha256:ed5157fef23a4bc4594615a0dd8eba94b2bb36bf2a343fa3d8bb2fa0a62a99d5
-    # via
-    #   -c requirements.txt
-    #   flake8
-    #   pluggy
-    #   pytest
 iniconfig==1.1.1 \
     --hash=sha256:011e24c64b7f47f6ebd835bb12a743f2fbe9a26d4cecaa7f53bc4f35ee9da8b3 \
     --hash=sha256:bc3af051d7d14b2ee5ef9969666def0cd1a000e121eaea580d4a313df4b37f32
@@ -160,9 +152,9 @@ pyparsing==2.4.7 \
     --hash=sha256:c203ec8783bf771a155b207279b9bccb8dea02d8f0c9e5f8ead507bc3246ecc1 \
     --hash=sha256:ef9d7589ef3c200abe66653d3f1ab1033c3c419ae9b9bdb1240a85b024efc88b
     # via packaging
-pytest==6.2.4 \
-    --hash=sha256:50bcad0a0b9c5a72c8e4e7c9855a3ad496ca6a881a3641b4260605450772c54b \
-    --hash=sha256:91ef2131a9bd6be8f76f1f08eac5c5317221d6ad1e143ae03894b862e8976890
+pytest==6.2.5 \
+    --hash=sha256:131b36680866a76e6781d13f101efb86cf674ebb9762eb70d3082b6f29889e89 \
+    --hash=sha256:7310f8d27bc79ced999e760ca304d69f6ba6c6649c0b60fb0e04a4a77cacc134
     # via -r dev-requirements.in
 regex==2020.10.28 \
     --hash=sha256:03855ee22980c3e4863dc84c42d6d2901133362db5daf4c36b710dd895d78f0a \
@@ -238,9 +230,7 @@ typed-ast==1.4.1 \
     --hash=sha256:fc0fea399acb12edbf8a628ba8d2312f583bdbdb3335635db062fa98cf71fca4 \
     --hash=sha256:fcf135e17cc74dbfbc05894ebca928ffeb23d9790b3167a674921db19082401f \
     --hash=sha256:fe460b922ec15dd205595c9b5b99e2f056fd98ae8f9f56b888e7a17dc2b757e7
-    # via
-    #   black
-    #   mypy
+    # via black
 types-setuptools==57.0.2 \
     --hash=sha256:4ead432cc394b8de5ee94a312494f3c730d21dbfef37f300a6ac5e742271d735 \
     --hash=sha256:62c8dc465f29eeaad6b9025645138738d3df1cafc70cb0b14aea700946f2cbb7
@@ -252,11 +242,4 @@ typing-extensions==3.10.0.0 \
     # via
     #   -c requirements.txt
     #   black
-    #   importlib-metadata
     #   mypy
-zipp==3.5.0 \
-    --hash=sha256:957cfda87797e389580cb8b9e3870841ca991e2125350677b2ca83a0e99390a3 \
-    --hash=sha256:f5812b1e007e48cff63449a5e9f4e7ebea716b4111f9c4f9a645f91d579bf0c4
-    # via
-    #   -c requirements.txt
-    #   importlib-metadata
