@@ -56,3 +56,15 @@ workflows:
           filters:
             branches:
               only: main
+      - gcp-gcr/build-and-push-image:
+          name: Build and push burnham 📦
+          context: data-eng-airflow-gcr
+          path: application
+          docker-context: application
+          tag: $CIRCLE_TAG
+          image: burnham
+          requires:
+            - run_checks
+          filters:
+            tags:
+              only: /\d+(?:\.\d+)+/
