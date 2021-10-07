@@ -3,9 +3,5 @@
 # when a new pull request is created.
 * @hackebrot @jrbenny35
 
-# The following users own dependency upgrades for the burnham application.
-# This includes version upgrades for glean-sdk and glean-parser via Dependabot.
-/application/requirements.txt @hackebrot @jrbenny35 @mozilla/glean
-
 # The following users own the repository documentation
 /README.md @hackebrot @jrbenny35 @mozilla/glean
