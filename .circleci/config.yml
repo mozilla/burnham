@@ -57,7 +57,7 @@ workflows:
             branches:
               only: main
       - gcp-gcr/build-and-push-image:
-          name: Build and push burnham 📦
+          name: Build and push burnham v$CIRCLE_TAG 📦
           context: data-eng-airflow-gcr
           path: application
           docker-context: application
@@ -67,4 +67,5 @@ workflows:
             - run_checks
           filters:
             tags:
-              only: /\d+(?:\.\d+)+/
+              # Only run this for tags using version identifiers (YY.MINOR.MICRO)
+              only: /^\d+\.\d+\.\d+$/
