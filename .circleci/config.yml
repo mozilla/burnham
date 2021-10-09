@@ -39,6 +39,7 @@ workflows:
           context: data-eng-airflow-gcr
           path: application
           docker-context: application
+          tag: latest
           image: burnham
           requires:
             - run_checks
@@ -70,4 +71,4 @@ workflows:
               # Only run this for tags using version identifiers (YY.MINOR.MICRO)
               only: /^\d+\.\d+\.\d+$/
             branches:
-              only: main
+              ignore: /.*/
