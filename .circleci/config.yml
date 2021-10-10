@@ -35,7 +35,7 @@ workflows:
             parameters:
               tox_env: ["black", "flake8", "mypy", "py37"]
       - gcp-gcr/build-and-push-image:
-          name: Build and push burnham 📦
+          name: Build and push burnham:latest 📦
           context: data-eng-airflow-gcr
           path: application
           docker-context: application
@@ -47,7 +47,7 @@ workflows:
             branches:
               only: main
       - gcp-gcr/build-and-push-image:
-          name: Build and push burnham-bigquery latest 📦
+          name: Build and push burnham-bigquery 📦
           context: data-eng-airflow-gcr
           path: bigquery
           docker-context: bigquery
