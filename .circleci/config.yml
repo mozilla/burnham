@@ -39,7 +39,6 @@ workflows:
           context: data-eng-airflow-gcr
           path: application
           docker-context: application
-          tag: latest
           image: burnham
           requires:
             - run_checks
