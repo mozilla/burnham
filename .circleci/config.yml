@@ -47,7 +47,7 @@ workflows:
             branches:
               only: main
       - gcp-gcr/build-and-push-image:
-          name: Build and push burnham-bigquery 📦
+          name: Build and push burnham-bigquery:latest 📦
           context: data-eng-airflow-gcr
           path: bigquery
           docker-context: bigquery
