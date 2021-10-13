@@ -70,4 +70,5 @@ workflows:
               # Only run this for tags using version identifiers (YY.MINOR.MICRO)
               only: /^\d+\.\d+\.\d+$/
             branches:
+              # Ignore for all the branches and run only for tags
               ignore: /.*/
