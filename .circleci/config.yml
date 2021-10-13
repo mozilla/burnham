@@ -35,10 +35,11 @@ workflows:
             parameters:
               tox_env: ["black", "flake8", "mypy", "py37"]
       - gcp-gcr/build-and-push-image:
-          name: Build and push burnham 📦
+          name: Build and push burnham:latest 📦
           context: data-eng-airflow-gcr
           path: application
           docker-context: application
+          tag: latest
           image: burnham
           requires:
             - run_checks
@@ -56,3 +57,18 @@ workflows:
           filters:
             branches:
               only: main
+      - gcp-gcr/build-and-push-image:
+          name: Build and push burnham:${CIRCLE_TAG} 📦
+          context: data-eng-airflow-gcr
+          path: application
+          docker-context: application
+          tag: ${CIRCLE_TAG}
+          image: burnham
+          requires:
+            - run_checks
+          filters:
+            tags:
+              # Only run this for tags using version identifiers (YY.MINOR.MICRO)
+              only: /^\d+\.\d+\.\d+$/
+            branches:
+              ignore: /.*/
