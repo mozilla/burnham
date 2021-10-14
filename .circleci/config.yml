@@ -39,7 +39,6 @@ workflows:
           context: data-eng-airflow-gcr
           path: application
           docker-context: application
-          tag: latest
           image: burnham
           requires:
             - run_checks
@@ -47,7 +46,7 @@ workflows:
             branches:
               only: main
       - gcp-gcr/build-and-push-image:
-          name: Build and push burnham-bigquery 📦
+          name: Build and push burnham-bigquery:latest 📦
           context: data-eng-airflow-gcr
           path: bigquery
           docker-context: bigquery
@@ -71,4 +70,5 @@ workflows:
               # Only run this for tags using version identifiers (YY.MINOR.MICRO)
               only: /^\d+\.\d+\.\d+$/
             branches:
+              # Ignore for all the branches and run only for tags
               ignore: /.*/
