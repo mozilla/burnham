@@ -61,7 +61,7 @@ workflows:
             branches:
               only: main
       - gcp-gcr/build-and-push-image:
-          name: Build and push burnham:${CIRCLE_TAG} 📦
+          name: Build and push burnham 📦
           context: data-eng-airflow-gcr
           path: application
           docker-context: application
