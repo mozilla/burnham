@@ -34,6 +34,10 @@ workflows:
           matrix:
             parameters:
               tox_env: ["black", "flake8", "mypy", "py37"]
+          filters:
+            tags:
+              # Only run this for tags using version identifiers (YY.MINOR.MICRO)
+              only: /^\d+\.\d+\.\d+$/
       - gcp-gcr/build-and-push-image:
           name: Build and push burnham:latest 📦
           context: data-eng-airflow-gcr
