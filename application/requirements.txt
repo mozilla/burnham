@@ -96,9 +96,9 @@ jinja2==3.0.2 \
     # via
     #   burnham (setup.py)
     #   glean-parser
-jsonschema==4.1.0 \
-    --hash=sha256:2b3cca28580511d44326f0e7fc582eab3cbe31aabd1a1c2cfa74a399796ffd84 \
-    --hash=sha256:9dd7c33b4a96138dc37bb86b3610d3b12d30d96433d4d73435ca3025804154a8
+jsonschema==4.1.1 \
+    --hash=sha256:da833824a1dc3bd840a89474deb3b59dc88180757b52a6f0cc0744be959364a7 \
+    --hash=sha256:2a5ea0da054a759732ca60f19171fccf32649b1b4a5734e5988fec0087860910
     # via glean-parser
 markupsafe==2.0.1 \
     --hash=sha256:d8446c54dc28c01e5a2dbac5a25f071f6653e6e40f3a8818e8b45d790fe6ef53 \
