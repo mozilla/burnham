@@ -3,11 +3,15 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 ---
-$schema: moz://mozilla.org/schemas/glean/pings/1-0-0
+$schema: moz://mozilla.org/schemas/glean/pings/2-0-0
 
 discovery:
   description: >
     Custom ping sent by the burnham CLI app.
+  metadata:
+    tags:
+      - science
+      - automation
   include_client_id: true
   bugs:
     - https://github.com/mozilla/burnham/issues/5
@@ -19,6 +23,10 @@ discovery:
 space-ship-ready:
   description: >
     Custom ping for testing kebab-case ping names.
+  metadata:
+    tags:
+      - science
+      - automation
   include_client_id: true
   bugs:
     - https://github.com/mozilla/burnham/issues/8
@@ -30,6 +38,10 @@ space-ship-ready:
 starbase46:
   description: >
     Custom ping for testing ping names that contain numbers.
+  metadata:
+    tags:
+      - science
+      - automation
   include_client_id: true
   bugs:
     - https://github.com/mozilla/burnham/issues/8

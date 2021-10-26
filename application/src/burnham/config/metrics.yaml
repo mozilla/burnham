@@ -3,13 +3,16 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 ---
-$schema: moz://mozilla.org/schemas/glean/metrics/1-0-0
+$schema: moz://mozilla.org/schemas/glean/metrics/2-0-0
 
 test:
   run:
     type: uuid
     description: >
       ID of the current test run.
+    metadata:
+      tags:
+        - automation
     lifetime: application
     send_in_pings:
       - discovery
@@ -28,6 +31,9 @@ test:
     type: string
     description: >
       Name of the current test.
+    metadata:
+      tags:
+        - automation
     lifetime: application
     send_in_pings:
       - discovery
@@ -47,6 +53,9 @@ technology:
     type: labeled_counter
     description: >
       Counts the number of times a space-travel technology is used.
+    metadata:
+      tags:
+        - science
     labels:
       - warp_drive
       - spore_drive
@@ -65,6 +74,9 @@ mission:
     type: string
     description: >
       The identifier of the current mission.
+    metadata:
+      tags:
+        - science
     lifetime: application
     send_in_pings:
       - discovery
@@ -80,6 +92,9 @@ mission:
     type: string
     description: >
       The status of the current mission.
+    metadata:
+      tags:
+        - science
     lifetime: application
     send_in_pings:
       - discovery
