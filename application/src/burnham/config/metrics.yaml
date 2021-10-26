@@ -10,6 +10,8 @@ test:
     type: uuid
     description: >
       ID of the current test run.
+    tags:
+      - automation
     lifetime: application
     send_in_pings:
       - discovery
@@ -28,6 +30,8 @@ test:
     type: string
     description: >
       Name of the current test.
+    tags:
+      - automation
     lifetime: application
     send_in_pings:
       - discovery
@@ -47,6 +51,8 @@ technology:
     type: labeled_counter
     description: >
       Counts the number of times a space-travel technology is used.
+    tags:
+      - science
     labels:
       - warp_drive
       - spore_drive
@@ -65,6 +71,8 @@ mission:
     type: string
     description: >
       The identifier of the current mission.
+    tags:
+      - science
     lifetime: application
     send_in_pings:
       - discovery
@@ -80,6 +88,8 @@ mission:
     type: string
     description: >
       The status of the current mission.
+    tags:
+      - science
     lifetime: application
     send_in_pings:
       - discovery
