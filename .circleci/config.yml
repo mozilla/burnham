@@ -33,7 +33,7 @@ workflows:
           name: Run checks << matrix.tox_env >> 🤖
           matrix:
             parameters:
-              tox_env: ["black", "flake8", "mypy", "py37"]
+              tox_env: ["black", "flake8", "mypy", "glinter", "py37"]
           filters:
             tags:
               # Only run this for tags using version identifiers (YY.MINOR.MICRO)
