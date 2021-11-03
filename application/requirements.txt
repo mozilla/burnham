@@ -74,17 +74,17 @@ diskcache==5.2.1 \
     --hash=sha256:1805acd5868ac10ad547208951a1190a0ab7bbff4e70f9a07cde4dbdfaa69f64 \
     --hash=sha256:6e8137c778fd2752b93c8a8f944e939b3665d645b46774d8537dd3528ac3baa1
     # via glean-parser
-glean-parser==4.0.0 \
-    --hash=sha256:8856f93d10a6e3897603f95578bea7d08573a3b352e5b3d2b37cafc5393b6d2d \
-    --hash=sha256:d9f1ed70fba3d373cd1b37b495a410b77a5d159f4d2e9606e9982d67ef873bab
+glean-parser==4.3.1 \
+    --hash=sha256:a8924a3a4aca7fba35dc69d93031993d6481c6ec9cd43362c068eb3e18ea43e8 \
+    --hash=sha256:c194aba35a57ff9d139527c5321ef526599794994e355bad4c314bd3ab64c3eb
     # via glean-sdk
-glean-sdk==41.1.1 \
-    --hash=sha256:df7fb8ac6c85b7d3e1b36de200eb98ec7acb6ebdc3a4ac9b65186702f0af5ce0 \
-    --hash=sha256:dfd5d8497dbaaec86566000a0bbb1764da0cd593fac9adb8813975d0cb701bb6 \
-    --hash=sha256:1c4eb1d9bdc93f2b8926c615e8b98230f2727fb7bfec44f98df5055092487cc8 \
-    --hash=sha256:4719348754884a15c388ba9d7ee603562f2cf7fd9ec2bd3389dd15ec088dd2ee \
-    --hash=sha256:db1b8fa1ec03abe9a1b8c7c8342db8e67ed2784e2eaeb53e9c51855c2f54f70a \
-    --hash=sha256:c5f472b9273a064934d9e476127d419b5013a890e85205d3378f2aebb3546774
+glean-sdk==42.2.0 \
+    --hash=sha256:f6ae6b043796db6fb7e558aab1e8b7555a6abd71b7a4d194bd8bdc31d0622d7d \
+    --hash=sha256:8a5067ff644ddf913418947d11f5fbd72a5f26ee569b2a204b7a9498efbb3443 \
+    --hash=sha256:a6012dfb98958cdc10ff07afef97f79b9733924bfc58b0091c4f9aca42727e41 \
+    --hash=sha256:6479ed4a476c66b72867899367563b658bad10bac1a9d76dbe68f2873578e7a1 \
+    --hash=sha256:c43a9f7bea4da8e7a27fb65d6c576b478a40690c2a7228927336b1d417cfc5b8 \
+    --hash=sha256:5f6a7a2909c407a6477421c615512810c888fb4476bdf1aa7a5fa314a4dcc7be
     # via burnham (setup.py)
 importlib-metadata==4.8.1 \
     --hash=sha256:b618b6d2d5ffa2f16add5697cf57a46c76a56229b0ed1c438322e4e95645bd15 \
