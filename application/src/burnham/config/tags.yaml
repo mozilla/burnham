@@ -1,0 +1,10 @@
+---
+$schema: moz://mozilla.org/schemas/glean/tags/1-0-0
+
+automation:
+  description: |
+    *Automation* metrics 🏭
+
+science:
+  description: |
+    *Science* metrics 🚀
