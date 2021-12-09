@@ -104,6 +104,8 @@ Burnham uses 3 main Glean metrics. Note: Some types are used more than once
 * [Labeled Counter](https://mozilla.github.io/glean/book/reference/metrics/labeled_counters.html)
   * Counts the number of times a space-travel technology is used. Ex: Jump or Warp.
 
+Please see `config/metrics.yml` or `config/pings.yml` for more details.
+<hr>
 The pings burnham sends are as follows:
 
 * discovery
