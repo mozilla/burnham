@@ -127,6 +127,7 @@ def burnham(
         upload_enabled=enable_telemetry is True,
         data_dir=Path(TemporaryDirectory().name),
         configuration=Configuration(server_endpoint=platform),
+        log_level=logging.DEBUG
     )
 
     metrics.test.run.set(test_run)
