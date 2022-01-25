@@ -117,9 +117,9 @@ def burnham(
     """
 
     if verbose:
-        log_level=logging.DEBUG
+        log_level = logging.DEBUG
     else:
-        log_level=logging.INFO
+        log_level = logging.INFO
 
     logging.basicConfig(level=log_level)
 
