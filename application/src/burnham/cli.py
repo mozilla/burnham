@@ -117,9 +117,11 @@ def burnham(
     """
 
     if verbose:
-        logging.basicConfig(level=logging.DEBUG)
+        log_level = logging.DEBUG
     else:
-        logging.basicConfig(level=logging.INFO)
+        log_level = logging.INFO
+
+    logging.basicConfig(level=log_level)
 
     Glean.initialize(
         application_id=__title__,
@@ -127,6 +129,7 @@ def burnham(
         upload_enabled=enable_telemetry is True,
         data_dir=Path(TemporaryDirectory().name),
         configuration=Configuration(server_endpoint=platform),
+        log_level=log_level,
     )
 
     metrics.test.run.set(test_run)
