@@ -298,9 +298,9 @@ zipp==3.5.0 \
     # via importlib-metadata
 
 # The following packages are considered to be unsafe in a requirements file:
-setuptools==60.8.1 \
-    --hash=sha256:07e97e2f1e5607d240454e98c75c7004560ac8417ca5ae1dbaa50811cb6cc95c \
-    --hash=sha256:23aad87cc27f4ae704079618c1d117a71bd43d41e355f0698c35f6b1c796d26c
+setuptools==60.8.2 \
+    --hash=sha256:43a5575eea6d3459789316e1596a3d2a0d215260cacf4189508112f35c9a145b \
+    --hash=sha256:66b8598da112b8dc8cd941d54cf63ef91d3b50657b374457eda5851f3ff6a899
     # via
     #   jsonschema
     #   yamllint
