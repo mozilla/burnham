@@ -74,9 +74,9 @@ diskcache==5.4.0 \
     --hash=sha256:8879eb8c9b4a2509a5e633d2008634fb2b0b35c2b36192d89655dbde02419644 \
     --hash=sha256:af3ec6d7f167bbef7b6c33d9ee22f86d3e8f2dd7131eb7c4703d8d91ccdc0cc4
     # via glean-parser
-glean-parser==4.4.0 \
-    --hash=sha256:3ae1435b183936a49368806421df27ab944f1802e86a02b38b8e08e53ff0aac5 \
-    --hash=sha256:948a2b3c81270564a33251fc8ecbfe48bf0549f74bc2d5a8027f6d7b1abae828
+glean-parser==5.0.1 \
+    --hash=sha256:309f36ed55f2f1ed82472ab8b18e1dd01edeb71060464e3f859c9b60e38b87d4 \
+    --hash=sha256:7357aac9a857883db99121abb15b9fdb9bcb5437cecee28c9b8a09a2123408ed
     # via glean-sdk
 glean-sdk==44.0.0 \
     --hash=sha256:38de001b5a700b80eace203a7c4063221752efa962e9f757639d24ef4f9a0ca2 \
