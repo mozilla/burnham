@@ -7,6 +7,22 @@ Application for end-to-end testing [Mozilla's Glean telemetry][Glean]. 👩‍�
 We successfully completed the proof of concept and are now running burnham in
 production. 🚀
 
+## Community
+
+Please check out the [good first issue][good first issue] label for tasks, that
+are good candidates for your first contribution to **burnham**. Your
+contributions are greatly appreciated! Every little bit helps, and credit will
+always be given! 👍
+
+Please note that **burnham** is released with a [Contributor Code of
+Conduct][code of conduct]. By participating in this project you agree to abide
+by its terms.
+
+## License
+
+Distributed under the terms of the [Mozilla Public License 2.0][license],
+**burnham** is free and open source software.
+
 ## Installation
 
 **burnham** is available for download from [PyPI][PyPI] via [pip][pip]:
@@ -98,22 +114,6 @@ This will launch the platform and run 3 additional containers running
 `burnham`. It will print logs from all containers to stdout, the log of
 `platform` should show the received pings. The `burnham` containers will exit
 automatically, you can stop the platform with Ctrl-C.
-
-## Community
-
-Please check out the [good first issue][good first issue] label for tasks, that
-are good candidates for your first contribution to **burnham**. Your
-contributions are greatly appreciated! Every little bit helps, and credit will
-always be given! 👍
-
-Please note that **burnham** is released with a [Contributor Code of
-Conduct][code of conduct]. By participating in this project you agree to abide
-by its terms.
-
-## License
-
-Distributed under the terms of the [Mozilla Public License 2.0][license],
-**burnham** is free and open source software.
 
 [Glean]: https://mozilla.github.io/glean/book/index.html
 [PyPI]: https://pypi.org/project/burnham/
