@@ -28,6 +28,31 @@ Versions follow [Calendar Versioning][calver] using a `YY.MINOR.MICRO` scheme. ð
 burnham [OPTIONS] MISSIONS...
 ```
 
+The accepted values for `MISSIONS` are the `identifier` values for missions in [missions.py][missions.py]
+
+For example: `"MISSION G: FIVE WARPS, FOUR JUMPS" "MISSION C: ONE JUMP"`
+
+[missions.py]: /application/src/burnham/missions.py
+
+### CLI options
+
+All available CLI options for burnham are defined in [cli.py][cli.py].
+
+Copied here for your convenience. ðŸ“‹
+
+| Short name | Long name             | Environment variable   | Type  | Description                                                                                   |
+| ---------- | --------------------- | ---------------------- | ----- | --------------------------------------------------------------------------------------------- |
+|            | `--help`              |                        |       | Print the help message                                                                        |
+| `-v`       | `--version`           |                        |       | Print the app's version number to the console                                                 |
+| `-r`       | `--test-run`          | `BURNHAM_TEST_RUN`     | `str` | ID of the current test run                                                                    |
+| `-n`       | `--test-name`         | `BURNHAM_TEST_NAME`    | `str` | Name of the current test                                                                      |
+| `-p`       | `--platform`          | `BURNHAM_PLATFORM_URL` | `str` | Data Platform URL                                                                             |
+| `-s`       | `--spore-drive`       | `BURNHAM_SPORE_DRIVE`  | `str` | Interface for the spore-drive technology. Accepted values: `["tardigrade", "tardigrade-dna"]` |
+| `--t`      | `--enable-telemetry`  | `BURNHAM_TELEMETRY`    |       | Enable telemetry submission with Glean                                                        |
+| `-T`       | `--disable-telemetry` | `BURNHAM_TELEMETRY`    |       | Disable telemetry submission with Glean                                                       |
+
+[cli.py]: /application/src/burnham/cli.py
+
 ## Custom Glean SDK distribution
 
 When working on a bug fix for the Python bindings for the Glean SDK, you may

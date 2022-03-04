@@ -1,49 +1,5 @@
 # Burnham Specifics
 
-## Command Line Flags
-
-* -V, --version
-  * Print debug information to the console
-* -v, --verbose
-  * ID of the current test run
-* -r, --test-run
-  * Name of the current test
-* -n, -test-name
-  * Data Platform URL
-* -p, --platform
-  * Interface for the spore-drive technology
-* -s, --spore-drive
-  * Interface for the spore-drive technology
-* -t, -T, --enable-telemetry, --disable-telemetry
-  * Enable/Disable telemetry submission with Glean
-
-## Environment Variables
-
-* BURNHAM_VERBOSE
-  * boolean
-  * Print debug information to the console
-* BURNHAM_TEST_RUN
-  * string
-  * ID of the current test run
-* BURNHAM_TEST_NAME
-  * string
-  * Name of the current test
-* BURNHAM_PLATFORM_URL
-  * string
-  * Data Platform URL
-* BURNHAM_SPORE_DRIVE
-  * string
-    * options: tardigrade, tardigrade-dna
-  * Interface for the spore-drive technology
-* BURNHAM_TELEMETRY
-  * boolean
-  * Enable/Disable telemetry submission with Glean
-* BURNHAM_MISSIONS
-  * string
-    * ex.: MissionA
-  * Burnham missions
-
-
 ## Missions
 
 Missions are the main way to use burnham. With Missions you can send pings and Glean Metrics for measuring. 
