@@ -27,7 +27,7 @@ As mentioned about for most missions `complete()` performs a sequence of
 `space_ship.jump()` and `space_ship.warp()` calls, which in turn records to the
 `technology.space_travel` metric.
 
-* `MissionE` is special in that it submits a `starbase46` and then produce
+* `MissionE` is special in that it submits a `starbase46` ping and then produces
 a Glean validation error (stored as a metric in
 `metrics.labeled_counter.glean_error_invalid_overflow`)
 * `MissionH` is special in that it will disable Glean collection and upload
@@ -47,5 +47,4 @@ Glean pings are defined in [src/burnham/config/pings.yaml][pings.yaml].
 [pings.yaml]: ../src/burnham/config/pings.yaml
 [cli.py]: ../src/burnham/cli.py
 [missions.py]: ../src/burnham/missions.py
-
 [metric_types]: https://mozilla.github.io/glean/book/reference/metrics/index.html
