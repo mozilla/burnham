@@ -44,6 +44,12 @@ Please see [docs/usage.md][docs_usage] for information about how to use the burn
 
 [docs_usage]: ./docs/usage.md
 
+## Glean metrics and pings
+
+Please see [docs/glean.md][docs_glean] for information about Glean metrics and pings in burnham. 📊
+
+[docs_glean]: ./docs/glean.md
+
 ## Development
 
 Please see [docs/development.md][docs_development] for information about Glean metrics
