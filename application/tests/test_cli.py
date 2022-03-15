@@ -67,6 +67,7 @@ def test_cli(
     result = run_cli(
         f"--test-run={uuid.uuid4()}",
         "--test-name=test_cli",
+        "--airflow-task-id=client1",
         "--platform=localhost:0",
         "--spore-drive=tardigrade-dna",
         *missions,
@@ -97,6 +98,7 @@ def test_cli_verbosity(
     result = run_cli(
         f"--test-run={uuid.uuid4()}",
         "--test-name=test_cli",
+        "--airflow-task-id=client2",
         "--platform=localhost:0",
         "--verbose",
         *missions,
@@ -122,6 +124,7 @@ def test_cli_unknown_mission_identifier(
     result = run_cli(
         f"--test-run={uuid.uuid4()}",
         "--test-name=test_cli",
+        "--airflow-task-id=client3",
         "--platform=localhost:0",
         "--spore-drive=tardigrade-dna",
         *missions,
@@ -154,6 +157,7 @@ def test_cli_restore_test_run_and_test_name(
     result = run_cli(
         f"--test-run={uuid.uuid4()}",
         "--test-name=test_cli",
+        "--airflow-task-id=client4",
         "--platform=localhost:0",
         "--spore-drive=tardigrade-dna",
         *missions,
