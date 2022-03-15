@@ -23,7 +23,7 @@ The program flow for the burnham CLI app is as follows:
 
 Burnham missions are defined in [src/burnham/missions.py][missions.py]
 
-As mentioned about for most missions `complete()` performs a sequence of
+As mentioned above for most missions `complete()` performs a sequence of
 `space_ship.jump()` and `space_ship.warp()` calls, which in turn records to the
 `technology.space_travel` metric.
 
