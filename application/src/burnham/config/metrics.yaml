@@ -64,7 +64,7 @@ test:
     bugs:
       - https://github.com/mozilla/burnham/issues/381
     data_reviews:
-      - https://bugzilla.mozilla.org/show_bug.cgi?id=1643412 # TODO this needs to be updated
+      - https://github.com/mozilla/burnham/pull/387
     notification_emails:
       - raphael@mozilla.com
     expires: never
