@@ -48,6 +48,27 @@ test:
       - raphael@mozilla.com
     expires: never
 
+  airflow_task_id:
+    type: string
+    description: >
+      ID of the Airflow task that runs the client
+    metadata:
+      tags:
+        - automation
+    lifetime: application
+    send_in_pings:
+      - discovery
+      - space-ship-ready
+      - starbase46
+      - deletion-request
+    bugs:
+      - https://github.com/mozilla/burnham/issues/381
+    data_reviews:
+      - https://bugzilla.mozilla.org/show_bug.cgi?id=1643412 # TODO this needs to be updated
+    notification_emails:
+      - raphael@mozilla.com
+    expires: never
+
 technology:
   space_travel:
     type: labeled_counter
