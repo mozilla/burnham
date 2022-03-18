@@ -11,6 +11,7 @@ from typing import Any, Callable
 import pytest
 from click.testing import CliRunner, Result
 
+from burnham import metrics
 from burnham.cli import burnham
 
 
@@ -66,6 +67,7 @@ def test_cli(
     result = run_cli(
         f"--test-run={uuid.uuid4()}",
         "--test-name=test_cli",
+        "--airflow-task-id=client1",
         "--platform=localhost:0",
         "--spore-drive=tardigrade-dna",
         *missions,
@@ -96,6 +98,7 @@ def test_cli_verbosity(
     result = run_cli(
         f"--test-run={uuid.uuid4()}",
         "--test-name=test_cli",
+        "--airflow-task-id=client2",
         "--platform=localhost:0",
         "--verbose",
         *missions,
@@ -121,6 +124,7 @@ def test_cli_unknown_mission_identifier(
     result = run_cli(
         f"--test-run={uuid.uuid4()}",
         "--test-name=test_cli",
+        "--airflow-task-id=client3",
         "--platform=localhost:0",
         "--spore-drive=tardigrade-dna",
         *missions,
@@ -153,6 +157,7 @@ def test_cli_restore_test_run_and_test_name(
     result = run_cli(
         f"--test-run={uuid.uuid4()}",
         "--test-name=test_cli",
+        "--airflow-task-id=client4",
         "--platform=localhost:0",
         "--spore-drive=tardigrade-dna",
         *missions,
@@ -163,3 +168,40 @@ def test_cli_restore_test_run_and_test_name(
     assert monkeypatch_set_upload_enabled.values == [False, True]
     assert monkeypatch_space_ship_ready.counter == 1
     assert monkeypatch_discovery.counter == 4
+
+
+def test_cli_metrics(
+    monkeypatch_space_ship_ready,
+    monkeypatch_discovery,
+    monkeypatch_starbase46,
+    run_cli: Callable,
+) -> None:
+    """Test that the CLI app sets Glean metrics as expected."""
+
+    missions = [
+        "MISSION A: ONE WARP",
+        "MISSION G: FIVE WARPS, FOUR JUMPS",
+    ]
+
+    test_run = uuid.uuid4()
+    test_name = "test_cli"
+    airflow_task_id = "client5"
+
+    result = run_cli(
+        f"--test-run={test_run}",
+        f"--test-name={test_name}",
+        f"--airflow-task-id={airflow_task_id}",
+        "--platform=localhost:0",
+        "--spore-drive=tardigrade-dna",
+        *missions,
+    )
+
+    assert result.exit_code == 0
+
+    assert metrics.test.run.test_get_value() == test_run
+    assert metrics.test.name.test_get_value() == test_name
+    assert metrics.test.airflow_task_id.test_get_value() == airflow_task_id
+
+    assert monkeypatch_space_ship_ready.counter == 1
+    assert monkeypatch_discovery.counter == 2
+    assert monkeypatch_starbase46.counter == 0

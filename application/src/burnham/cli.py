@@ -70,6 +70,14 @@ class MissionParamType(click.ParamType):
     envvar="BURNHAM_TEST_NAME",
 )
 @click.option(
+    "-a",
+    "--airflow-task-id",
+    help="ID of the Airflow task that runs the client",
+    type=str,
+    required=True,
+    envvar="BURNHAM_AIRFLOW_TASK_ID",
+)
+@click.option(
     "-p",
     "--platform",
     help="Data Platform URL",
@@ -105,6 +113,7 @@ def burnham(
     verbose: bool,
     test_run: str,
     test_name: str,
+    airflow_task_id: str,
     enable_telemetry: bool,
     platform: str,
     spore_drive: str,
@@ -134,6 +143,7 @@ def burnham(
 
     metrics.test.run.set(test_run)
     metrics.test.name.set(test_name)
+    metrics.test.airflow_task_id.set(airflow_task_id)
 
     space_ship = Discovery(
         warp_drive=WarpDrive(),
