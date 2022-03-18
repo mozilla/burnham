@@ -13,7 +13,7 @@ def read(*args: str) -> str:
 
 setuptools.setup(
     name="burnham",
-    version="22.0.0",
+    version="22.1.0",
     author="Raphael Pierzina",
     author_email="raphael@hackebrot.de",
     maintainer="Raphael Pierzina",
