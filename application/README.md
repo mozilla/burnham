@@ -52,8 +52,8 @@ Please see [docs/glean.md][docs_glean] for information about Glean metrics and p
 
 ## Development
 
-Please see [docs/development.md][docs_development] for information about Glean metrics
-and pings in burnham. 📊
+Please see [docs/development.md][docs_development] for information about running
+burnham locally and using custom Glean SDK distributions. 💻
 
 [docs_development]: ./docs/development.md
 
