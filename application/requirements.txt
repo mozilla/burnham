@@ -90,9 +90,9 @@ importlib-metadata==4.9.0 \
     --hash=sha256:e8b45564028bc25f8c99f546616112a6df5de6655893d7eb74c9a99680dc9751 \
     --hash=sha256:ee50794eccb0ec340adbc838344ebb9a6ff2bcba78f752d31fc716497e2149d6
     # via jsonschema
-jinja2==3.0.3 \
-    --hash=sha256:077ce6014f7b40d03b47d1f1ca4b0fc8328a692bd284016f806ed0eaca390ad8 \
-    --hash=sha256:611bb273cd68f3b993fabdc4064fc858c5b47a973cb5aa7999ec1ba405c87cd7
+jinja2==3.1.1 \
+    --hash=sha256:539835f51a74a69f41b848a9645dbdc35b4f20a3b601e2d9a7e22947b15ff119 \
+    --hash=sha256:640bed4bb501cbd17194b3cace1dc2126f5b619cf068a726b98192a0fde74ae9
     # via
     #   burnham (setup.py)
     #   glean-parser
