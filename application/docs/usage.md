@@ -22,7 +22,7 @@ Copied here for your convenience. 📋
 | `-v`       | `--version`           |                           |       | Print the app's version number to the console                                                 |
 | `-r`       | `--test-run`          | `BURNHAM_TEST_RUN`        | `str` | ID of the current test run                                                                    |
 | `-n`       | `--test-name`         | `BURNHAM_TEST_NAME`       | `str` | Name of the current test                                                                      |
-| `-a`       | `--airflow_task_id`   | `BURNHAM_AIRFLOW_TASK_ID` | `str` | ID of the Airflow task that runs the client                                                   |
+| `-a`       | `--airflow-task-id`   | `BURNHAM_AIRFLOW_TASK_ID` | `str` | ID of the Airflow task that runs the client                                                   |
 | `-p`       | `--platform`          | `BURNHAM_PLATFORM_URL`    | `str` | Data Platform URL                                                                             |
 | `-s`       | `--spore-drive`       | `BURNHAM_SPORE_DRIVE`     | `str` | Interface for the spore-drive technology. Accepted values: `["tardigrade", "tardigrade-dna"]` |
 | `-t`       | `--enable-telemetry`  | `BURNHAM_TELEMETRY`       |       | Enable telemetry submission with Glean                                                        |
