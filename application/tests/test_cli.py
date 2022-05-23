@@ -137,27 +137,35 @@ def test_cli_unknown_mission_identifier(
     assert monkeypatch_discovery.counter == 0
 
 
-def test_cli_restore_test_run_and_test_name(
+@pytest.mark.skip(
+    reason="metrics are not reset because Glean upload is already disabled"
+)
+def test_cli_restore_test_metrics(
     monkeypatch_space_ship_ready,
     monkeypatch_discovery,
     monkeypatch_set_upload_enabled,
     run_cli: Callable,
 ) -> None:
-    """Test that the CLI restores the values for test.run and test.name after
-    completing MISSION I.
+    """Test that the CLI restores the values for test.run, test.name and
+    test.airflow_task_id after completing MISSION I.
     """
+
+    test_run = uuid.uuid4()
+    test_name = "test_cli"
+    airflow_task_id = "client4"
 
     missions = [
         "MISSION G: FIVE WARPS, FOUR JUMPS",
         "MISSION H: DISABLE GLEAN UPLOAD",
         "MISSION D: TWO JUMPS",
         "MISSION I: ENABLE GLEAN UPLOAD",
+        "MISSION D: TWO JUMPS",
     ]
 
     result = run_cli(
-        f"--test-run={uuid.uuid4()}",
-        "--test-name=test_cli",
-        "--airflow-task-id=client4",
+        f"--test-run={test_run}",
+        f"--test-name={test_name}",
+        f"--airflow-task-id={airflow_task_id}",
         "--platform=localhost:0",
         "--spore-drive=tardigrade-dna",
         *missions,
@@ -165,9 +173,13 @@ def test_cli_restore_test_run_and_test_name(
 
     assert result.exit_code == 0
 
+    assert metrics.test.run.test_get_value() == test_run
+    assert metrics.test.name.test_get_value() == test_name
+    assert metrics.test.airflow_task_id.test_get_value() == airflow_task_id
+
     assert monkeypatch_set_upload_enabled.values == [False, True]
     assert monkeypatch_space_ship_ready.counter == 1
-    assert monkeypatch_discovery.counter == 4
+    assert monkeypatch_discovery.counter == 5
 
 
 def test_cli_metrics(
