@@ -1,4 +1,4 @@
-FROM python:3.7-slim-buster as wheels
+FROM python:3.10-slim-buster as wheels
 
 LABEL maintainer "Raphael Pierzina <raphael@hackebrot.de>"
 
@@ -12,7 +12,7 @@ RUN python -m pip install --upgrade --no-cache-dir \
 RUN python -m pip wheel -w /wheels -r requirements.txt
 RUN python -m pip wheel -w /wheels --no-deps .
 
-FROM python:3.7-slim-buster
+FROM python:3.10-slim-buster
 
 LABEL maintainer "Raphael Pierzina <raphael@hackebrot.de>"
 
