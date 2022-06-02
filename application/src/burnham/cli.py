@@ -156,13 +156,14 @@ def burnham(
             complete_mission(space_ship=space_ship, mission=mission)
 
             # When mission "MISSION H: DISABLE GLEAN UPLOAD" disables the Glean
-            # SDK ping upload all pending events, metrics and pings are
-            # cleared, except for first_run_date. We need to restore values for
-            # test.run and test.name after re-enabling ping upload, so that we
-            # can properly correlate new pings with the test scenario.
+            # SDK ping upload all pending events, metrics and pings are cleared,
+            # except for first_run_date. We need to restore values for test.run,
+            # test.name and test.airflow_task_id after re-enabling ping upload,
+            # so that we can properly link new pings.
             if mission.identifier == "MISSION I: ENABLE GLEAN UPLOAD":
                 metrics.test.run.set(test_run)
                 metrics.test.name.set(test_name)
+                metrics.test.airflow_task_id.set(airflow_task_id)
 
         secs = 5
         logger.info("All missions completed.")
