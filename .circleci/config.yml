@@ -7,7 +7,7 @@ orbs:
 jobs:
   run_checks:
     docker:
-      - image: python:3.7
+      - image: python:3.10
     working_directory: ~/burnham/application
     parameters:
       tox_env:
@@ -33,7 +33,7 @@ workflows:
           name: Run checks << matrix.tox_env >> 🤖
           matrix:
             parameters:
-              tox_env: ["black", "flake8", "mypy", "glinter", "py37"]
+              tox_env: ["black", "flake8", "mypy", "glinter", "py310"]
           filters:
             tags:
               # Only run this for tags using version identifiers (YY.MINOR.MICRO)
