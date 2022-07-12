@@ -173,9 +173,9 @@ tomli==1.2.1 \
     #   coverage
     #   mypy
     #   pytest
-types-setuptools==57.4.9 \
-    --hash=sha256:536ef74744f8e1e4be4fc719887f886e74e4cf3c792b4a06984320be4df450b5 \
-    --hash=sha256:948dc6863373750e2cd0b223a84f1fb608414cde5e55cf38ea657b93aeb411d2
+types-setuptools==62.6.1 \
+    --hash=sha256:affd968a3a7218e1c96f1806eb457f4027eac803b3caaddccf98a4e5776b1724 \
+    --hash=sha256:b0341c29c7f44f7625204532b8829bd92ebb5fd48aa9f3e2052177e743e990b1
     # via -r dev-requirements.in
 typing-extensions==4.0.1 \
     --hash=sha256:4ca091dea149f945ec56afb48dae714f21e8692ef22a395223bcd328961b6a0e \
