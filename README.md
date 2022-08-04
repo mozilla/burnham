@@ -1,5 +1,9 @@
 # burnham 👩‍🚀📈🤖
 
+**❌ As of August 4, 2022, the burnham end-to-end test suite was disabled on
+Airflow. The source code in this repository is no longer actively maintained and
+the repository was marked as read-only as a result. ❌**
+
 The burnham project is an end-to-end test suite that aims to automatically
 verify that Glean-based products correctly measure, collect, and submit
 non-personal information to the GCP-based Data Platform and that the received
